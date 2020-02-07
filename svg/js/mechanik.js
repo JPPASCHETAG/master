@@ -9,7 +9,6 @@ function roll(elem){
     
     figur = document.getElementById("svg_figur0");
     figur.style.left = "100px";
-    
 }
 
 function roll2(elem){
