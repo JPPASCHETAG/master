@@ -1,0 +1,34 @@
+body, html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+hr {
+margin: auto;
+ width: 40%;
+}
+.backround{
+    background-image: url('/w3images/forestbridge.jpg');
+    background-position: center;
+    background-size: fill;
+    position: relative;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+}
+.welcome {
+position: absolute;
+top: 50%;
+left: 40%;
+transform: translate(-50%, -50%);
+text-align: center;
+font-size: 50px;
+}
+.btn{
+    font-size: 50px;
+    border-radius: 25px;
+    background-color: transparent;
+    border-width: 0px;
+    }
