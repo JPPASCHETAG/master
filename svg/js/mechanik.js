@@ -61,6 +61,7 @@
 
     var top = x.top + pageYOffset;
     var left = x.left + pageXOffset;
+    left = left + 25;
     top += "px";
     left += "px";
 
