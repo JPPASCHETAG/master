@@ -1,23 +1,4 @@
-function roll(elem){
-    var idgesamt = elem.parentNode.id;
-    var id = idgesamt.substr(-1);
-
-    var figur = getSpielerFigur(id);
-
-    var svg = document.getElementById('svg_obj');
-    document.getElementById("svg_div").innerHTML += figur;
-    
-    figur = document.getElementById("svg_figur0");
-    figur.style.left = "100px"; 
-}
-
-function setPosition(id){
-
-
-
-}
-
-function roll2(elem){
+  function roll(elem){
 
     var idgesamt = elem.parentNode.id;
     var id = idgesamt.substr(-1);
@@ -38,21 +19,22 @@ function roll2(elem){
     var fieldID = NextField(id);
 
     //Feldtext Ausgabe
-    var FieldText = getFeldText(fieldID);
-    Output(FieldText);
+    // var FieldText = getFeldText(fieldID);
+    // Output(FieldText);
 
 
-    //Funktionen der Felder ausführen
-    var functionName = "Feld"+fieldID;
-    executeFunctionByName(functionName,window,id);
+    // //Funktionen der Felder ausführen
+    // var functionName = "Feld"+fieldID;
+    // executeFunctionByName(functionName,window,id);
 
 
  }
 
+
  function NextField(id){
 
     //Zahl generieren
-    var zahl = Math.floor(Math.random() * 2) + 1;
+    var zahl = Math.floor(Math.random() * 6) + 1;
    
 
     //position holen
@@ -65,24 +47,34 @@ function roll2(elem){
     positionFeld.innerHTML = nextPosition;
 
 
-    //felderIDs
-    var FeldWas = "Feld"+position;
-    var FeldIs = "Feld"+nextPosition;
-
-    //die Farbe des Spielers holen
-    var farbe = getSPielerFarbe(id);
-
     // das SVG Element holen
     var mySVG = document.getElementById('svg_obj'),
     svgDoc;
     svgDoc = mySVG.contentDocument;
 
-    //Das neue feld einfäreben und das Alte wieder auf weiß
-   var svgItem = svgDoc.getElementById(FeldIs);
-        svgItem.style.fill = farbe;	
+    //neue FeldID
+    var neuesFeld = "Feld"+nextPosition;
 
-    svgItem = svgDoc.getElementById(FeldWas);
-        svgItem.style.fill = "white";
+    //Das neue feld einfäreben und das Alte wieder auf weiß
+    var svgItem = svgDoc.getElementById(neuesFeld);
+    var x = svgItem.getBoundingClientRect();
+
+    var top = x.top + pageYOffset;
+    var left = x.left + pageXOffset;
+    top += "px";
+    left += "px";
+
+    var figur = getSpielerFigur(id);
+
+    var svg = document.getElementById('svg_obj');
+    document.getElementById("svg_div").innerHTML += figur;
+    
+    var spielFigur = "svg_figur"+id;
+
+    figur = document.getElementById(spielFigur);
+    figur.style.left = left;
+    figur.style.top = top;
+
 
     return nextPosition;
 
@@ -107,8 +99,12 @@ function roll2(elem){
 
  function getSpielerFigur(id){
      var figuren = [
-         '<object style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="10%" width="10%"></object>',
-         '<object id="svg_figur1" data="../assets/figures/svg/mushroom.svg" type="image/svg+xml" height="10%" width="10%"></object>',
+         '<object style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
      ]
 
      var spieler = figuren[id];
