@@ -38,7 +38,7 @@ window.onclick = function(event) {
 
 <body>
   <div id="svg_div">
-    <object id="svg_obj" data="../assets/Feld2.svg" type="image/svg+xml" height="50%" width="50%"></object>
+    <object id="svg_obj" data="../assets/BasicmitID.svg" type="image/svg+xml" height="100%" width="100%"></object>
   </div>
 
     <br>
