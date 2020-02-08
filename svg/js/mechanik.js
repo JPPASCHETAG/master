@@ -8,7 +8,13 @@ function roll(elem){
     document.getElementById("svg_div").innerHTML += figur;
     
     figur = document.getElementById("svg_figur0");
-    figur.style.left = "100px";
+    figur.style.left = "100px"; 
+}
+
+function setPosition(id){
+
+
+
 }
 
 function roll2(elem){
