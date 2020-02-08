@@ -90,14 +90,15 @@ function getParam(){
 </script>
 
     <body style="font-family: 'Open Sans', sans-serif;">
-    <div class="backround">
-        <img src="Assets/HG_staerken_Bier_HD.jpg" alt="Hintergrund">
-    </div>
+    <div class="background">
+        <div class="logo">
+        </div>
 
     <div class="welcome">
         <p>Griaß eich, Servus und Hallo!</p>
         <hr>
         <br>
+        <button class="btn_a" id="btn_a">Anleitung</button>
         <button class="btn" id="btn">Neues Spiel starten</button>
         <br>
 
@@ -114,6 +115,7 @@ function getParam(){
                 </div>
                 <button onclick="getParam()" class="btn" id="safe">Speichern</button>
             </div>
+        </div>
         </div>
         <script>
             // Get the modal
