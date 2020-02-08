@@ -18,9 +18,9 @@
     //aktuelles Feld holen neues Feld berechnen & einfärben
     var fieldID = NextField(id);
 
-    //Feldtext Ausgabe
-    // var FieldText = getFeldText(fieldID);
-    // Output(FieldText);
+    // Feldtext Ausgabe
+    var FieldText = getFeldText(fieldID);
+    Output(FieldText);
 
 
     // //Funktionen der Felder ausführen
@@ -87,7 +87,10 @@
         "Alle Trinken",
         "Trink Elias",
         "Trink Julian",
-        "SAUFEN!!!!!!"
+        "SAUFEN!!!!!!",
+        "Feld5",
+        "Feld6",
+        "Feld7"
     ];
 
     var FeldText = felder[FieldID];
@@ -101,10 +104,10 @@
      var figuren = [
          '<object style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
          '<object style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/014-alien.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/017-satyr.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/021-scarecrow.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/020-werewolf.svg" type="image/svg+xml" height="5%" width="5%"></object>',
      ]
 
      var spieler = figuren[id];
