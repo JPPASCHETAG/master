@@ -7,28 +7,79 @@ hr {
 margin: auto;
  width: 40%;
 }
-.backround{
-    background-image: url('/w3images/forestbridge.jpg');
+.background{
+    background-image: url('../assets/background/basic.svg');
     background-position: center;
-    background-size: fill;
     position: relative;
     color: white;
     font-family: "Courier New", Courier, monospace;
     font-size: 25px;
     margin: 0;
     padding: 0;
+    background-repeat: no-repeat;
+    height: 100%;
 }
 .welcome {
-position: absolute;
-top: 50%;
-left: 40%;
-transform: translate(-50%, -50%);
+position: relative;
+top: 0;
+left: 0;
 text-align: center;
 font-size: 50px;
+background: #f9f9f9;
+border-radius: 20px;
+margin: 10% 10% 0 10%;
+padding: 20px;
+color: #333;
+transition: 0.3s;
+}
+.welcome:hover {
+  box-shadow: 0.5px 0.5px 5px rgba(0, 0, 0, 0.1);
+  transform: scale(1.001);
+  transition: 0.3s;
 }
 .btn{
-    font-size: 50px;
-    border-radius: 25px;
+    font-size: 30px;
     background-color: transparent;
-    border-width: 0px;
+    border: 3px solid transparent;
+    margin: 30px 25% 0 25%;
+    padding: 1% 1.5%;
+    border-radius: 20px;
+    color: #333;
+    transition: 0.3s;
+    border: 3px solid #1D4E89;
+    background-position: right;
     }
+.btn:hover {
+  cursor: pointer;
+  background-color: #1d4e89;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  color: #fff;
+  transition: 0.3s;
+  background-image:url('../assets/icons/play.svg');
+  padding-right: 6%;
+  background-position: 95%;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+
+
+}
+.btn_a{
+    font-size: 20px;
+    margin: 0 25% 0 25%;
+    padding: 1% 1.5%;
+    border-radius: 10px;
+    color: #333;
+    transition: 0.3s;
+    border-color: transparent;
+    }
+.btn_a:hover {
+  cursor: pointer;
+  background-color: #fff;
+  transform: scale(1.01);
+  color: #333;
+  transition: 0.3s;
+}
+.logo {
+  background-image: url('../assets/Logo.svg')
+}
