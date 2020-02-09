@@ -37,66 +37,48 @@ window.onclick = function(event) {
 </script>
 
 <body>
-  <div id="svg_div">
+  <div id="svg_div" style="width:70%;">
     <object id="svg_obj" data="../assets/BasicmitID.svg" type="image/svg+xml" height="100%" width="100%"></object>
   </div>
 
     <br>
 
-    <table id="spielerinfo">
-          <th></th>
+    <table id="spielerinfo" style="width: 48  0px; right:1%; position: absolute;  top: 1%;">
+      
             <?php
             $spielerinsgesammt = count($_GET);
 
-            //Spalten für die Spieler anlegen
-            for ($i=0; $i < $spielerinsgesammt; $i++) {
-              $j = $i+1;
+            //echo '<tr><th></th><th>Würfel</th><th>Schluck</th><th style="display: none"></th></tr>';
 
-              $spielername = $_GET['spielerName'.$i];
-
-              echo '<th id="spielerName'.$i.'">'.$spielername.'</th>';
-            }
-
-            //SpaltenInhalt für jeden spieler anlegen
-            $strZeile ="<tr>";
+            $strZeile ="";
 
             //Platz für den Würfel
             for ($i=0; $i < $spielerinsgesammt ; $i++) {
-              if($i==0){
-                $strZeile .="<td>Würfel</td>";
 
-                $strZeile .='<td id=würfel'.$i.'><button onclick="javaskript:roll(this)">Würfeln</button></td>';
-              }else {
-                $strZeile .="<td id=würfel".$i."></td>";
+                $spielername = $_GET['spielerName'.$i];
+
+                //SpaltenInhalt für jeden spieler anlegen
+                $strZeile ="<tr>";
+
+                $strZeile .="<td>".$spielername."</td>";
+
+                $strZeile .='<td id=würfel'.$i.' style="width: 100px;">';
+
+                if($i == 0){
+                  $strZeile .= '<button onclick="javaskript:roll(this)">Würfeln</button>';
+                }
+                
+                $strZeile .= '</td>';
+
+                $strZeile .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
+
+                $strZeile .='<td id=position'.$i.' style="display: none">1</td>';
+            
+                $strZeile .="</tr>";
+
+                echo $strZeile;
               }
 
-
-            }
-
-            $strZeile .="</tr><tr>";
-
-            //Schlücke
-            for ($i=0; $i < $spielerinsgesammt ; $i++) {
-              if($i==0){
-                $strZeile .="<td>Schlücke</td>";
-              }
-              $strZeile .='<td id=schluck'.$i.' style="text-align:center;">0</td>';
-
-            }
-
-            $strZeile .='</tr><tr style="display:none;">';
-            //Feldnummer
-            for ($i=0; $i < $spielerinsgesammt ; $i++) {
-
-              if($i==0){
-                $strZeile .="<td>Feld</td>";
-              }
-
-              $strZeile .='<td id=position'.$i.' style="text-align:center;">1</td>';
-
-            }
-
-            echo $strZeile;
              ?>
 
         </table>
