@@ -3,9 +3,7 @@
     var idgesamt = elem.parentNode.id;
     var id = idgesamt.substr(-1);
     var nextID = parseInt(id)+1;
-    var spieler = document.getElementById('spielerinfo').rows[0].cells.length;
-    spieler = parseInt(spieler);
-    spieler--;
+    var spieler = document.getElementById('spielerinfo').rows.length;
   
   //wenn der letzte spieler erreicht wurde wieder am anfang setzen
   if (nextID == spieler) {
@@ -85,9 +83,6 @@
     figur = document.getElementById(spielFigur);
     figur.style.left = leftPX;
     figur.style.top = topPX;
-
-    
-
 
     //Überprüfen ob jmd geschlagen wird
     var allefiguren = document.getElementsByClassName("figur");
@@ -270,19 +265,15 @@
                 tableField2.innerHTML = sipsNow;
               }
               return;
-        break;
         case 3:
               sipsWas = parseInt(sipsWas);
     
               var sipsNow = schluck + sipsWas;
               tableField.innerHTML = sipsNow;
-              return;
-        break;
-    
+              return;    
     }
-    
-    
-    }
+       
+}
 
       //eine Funktion aus Strings callen
 function executeFunctionByName(functionName, context /*, args */) {
@@ -297,6 +288,7 @@ function executeFunctionByName(functionName, context /*, args */) {
   
   //den button an den nächsten Spieler übergeben
   function nextSpieler(idgesamt,nextID){
+    
       var HTMLbutton = '<button onclick="javaskript:roll(this)">Würfeln</button>';
   
       var spieler = document.getElementById(idgesamt);
