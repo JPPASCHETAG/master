@@ -16,7 +16,7 @@
     nextSpieler(idgesamt,nextID);
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
-    var fieldID = NextField(id);
+    var fieldID = NextField(id);        
 
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
@@ -34,8 +34,7 @@
  function NextField(id){
 
     //Zahl generieren
-    var zahl = Math.floor(Math.random() * 6) + 1;
-   
+    var zahl = Math.floor(Math.random() * 6) + 1;   
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -55,26 +54,65 @@
     //neue FeldID
     var neuesFeld = "Feld"+nextPosition;
 
-    //Das neue feld einfäreben und das Alte wieder auf weiß
+    //Die Koordinaten des neuen Feldes
     var svgItem = svgDoc.getElementById(neuesFeld);
+    
+    //Die Koordinaten von Feld1 holen
+    var Feld1 = svgDoc.getElementById("Feld2").getBoundingClientRect();
+    var Feld1Top =  Feld1.x;    
+    Feld1Top = Feld1Top-30;
+    var Feld1Left = Feld1.y;
+    Feld1Left = Feld1Left-15;   
+    
+
+    //Koordinaten vom nächsten Feld holen
     var x = svgItem.getBoundingClientRect();
-
-    var top = x.top + pageYOffset;
-    var left = x.left + pageXOffset;
+    var top = Math.round(x.top + pageYOffset);
+    var left = Math.round(x.left + pageXOffset);
+    
     left = left + 25;
-    top += "px";
-    left += "px";
+    topPX = top+"px";
+    leftPX = left+"px";
 
+    //Spielerfigur holen
     var figur = getSpielerFigur(id);
 
-    var svg = document.getElementById('svg_obj');
+    //Spielfigur hinzufügen
     document.getElementById("svg_div").innerHTML += figur;
     
+    //position setzen
     var spielFigur = "svg_figur"+id;
-
     figur = document.getElementById(spielFigur);
-    figur.style.left = left;
-    figur.style.top = top;
+    figur.style.left = leftPX;
+    figur.style.top = topPX;
+
+    
+
+
+    //Überprüfen ob jmd geschlagen wird
+    var allefiguren = document.getElementsByClassName("figur");
+    for(var i = 0; i < allefiguren.length; i++)
+    {
+      
+      if(i != id){
+        var pos = allefiguren.item(i).getBoundingClientRect();  
+        
+        if (top == Math.round(pos.top) && left == Math.round(pos.left)) {
+          
+          //Die Spielfigur auf Feld1 setzen          
+          var spielerAufEins = document.getElementById("svg_figur"+i);
+
+          //Positionsfeld auf 1 setzen
+          var PositionsfeldSpieler = document.getElementById("position"+i); 
+          PositionsfeldSpieler.innerHTML = "1";
+          
+          spielerAufEins.style.top = Feld1Left+"px";
+          spielerAufEins.style.left = Feld1Top+"px";
+        }
+      }
+      
+      
+    }
 
 
     return nextPosition;
@@ -197,12 +235,12 @@
 
  function getSpielerFigur(id){
      var figuren = [
-         '<object style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/014-alien.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/017-satyr.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/021-scarecrow.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/020-werewolf.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/014-alien.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/017-satyr.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/021-scarecrow.svg" type="image/svg+xml" height="5%" width="5%"></object>',
+         '<object class="figur" style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/020-werewolf.svg" type="image/svg+xml" height="5%" width="5%"></object>',
      ]
 
      var spieler = figuren[id];
