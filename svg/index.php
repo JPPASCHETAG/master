@@ -42,7 +42,7 @@ function getSpielerZahl(spielerzahl){
            "#ff00ff"
        ];
 
-    if(spielerzahl > 6){
+    if(spielerzahl > 12){
       strReturn = 'Es können nur maximal 6 Leute gleichzeitig spielen';
     }else {
 
