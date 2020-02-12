@@ -42,7 +42,7 @@ function getSpielerZahl(spielerzahl){
            "#ff00ff"
        ];
 
-    if(spielerzahl > 6){
+    if(spielerzahl > 12){
       strReturn = 'Es können nur maximal 6 Leute gleichzeitig spielen';
     }else {
 
@@ -50,7 +50,8 @@ function getSpielerZahl(spielerzahl){
         strReturn +='<tr><th>Spieler</th><th>Spielername</th><th>Spielerfarbe</th></tr>';
         for (var i = 0; i < spielerzahl; i++) {
           j= i+1;
-          strReturn +='<tr><td>'+j+'</td><td><input id="spielerName'+i+'" type="text" placeholder="Spielername"></td><td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td></tr>';
+          strReturn +='<tr><td>'+j+'</td><td><input id="spielerName'+i+'" type="text" placeholder="Spielername"></td>';
+          strReturn +='<td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td></tr>';
         }
         document.getElementById("spielertable").innerHTML = strReturn;
 

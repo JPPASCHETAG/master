@@ -3,15 +3,24 @@
     var idgesamt = elem.parentNode.id;
     var id = idgesamt.substr(-1);
     var nextID = parseInt(id)+1;
-    var spieler = document.getElementById('spielerinfo').rows.length;
+    
+    //Alle Spieler zählen
+    var alleSpieler = 0;
+    var spieler = document.getElementsByClassName("spielerinfo");
+    for (var i = 0; i < spieler.length; i++) {
+      var index = spieler[i];
+      alleSpieler = alleSpieler + index.rows.length;
+      
+    }    
   
   //wenn der letzte spieler erreicht wurde wieder am anfang setzen
-  if (nextID == spieler) {
+  if (nextID == alleSpieler) {
     nextID = 0;
   }
 
     //den Würfel-Button weitergeben
     nextSpieler(idgesamt,nextID);
+    
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
     var fieldID = NextField(id);        
