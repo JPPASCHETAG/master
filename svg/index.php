@@ -18,6 +18,7 @@ $farben = [
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="CSS/index.css" >
         <title>Spiele zum Saufen</title>
     </head>
@@ -30,8 +31,34 @@ window.onload = function(){
     btnSafe.style.display = "none";
 
 }
+
+function getSpielFiguren(){
+
+    $.post("externPHP/gallery.php", "" ,function(data){
+
+        var obj = JSON.parse(data);
+
+        var length = Object.keys(obj).length
+
+        for (var i = 3; i < length; i++) {
+            console.log(obj[i]);
+            
+            
+        }     
+
+
+    });
+
+}
+
+
+
 //Spielerzahl schreiben/holen
 function getSpielerZahl(spielerzahl){
+
+     getSpielFiguren();
+
+
 
   var farben = [
            "#33cccc",
@@ -93,7 +120,8 @@ function getParam(){
     <body style="font-family: 'Open Sans', sans-serif;">
     <div class="background">
         <div class="logo">
-        </div>
+    </div>
+    <div id="spielfiguren"></div>
 
     <div class="welcome">
         <p>Griaß eich, Servus und Hallo!</p>
