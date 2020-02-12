@@ -43,14 +43,35 @@ function getSpielFiguren(){
         for (var i = 3; i < length; i++) {
             console.log(obj[i]);
             
-            
         }     
-
 
     });
 
 }
 
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
 
 
 //Spielerzahl schreiben/holen
@@ -72,13 +93,37 @@ function getSpielerZahl(spielerzahl){
     if(spielerzahl > 12){
       strReturn = 'Es können nur maximal 6 Leute gleichzeitig spielen';
     }else {
-
-      var strReturn ='<table>';
+        var strReturn = '';
+      strReturn +='<table>';
         strReturn +='<tr><th>Spieler</th><th>Spielername</th><th>Spielerfarbe</th></tr>';
         for (var i = 0; i < spielerzahl; i++) {
           j= i+1;
           strReturn +='<tr><td>'+j+'</td><td><input id="spielerName'+i+'" type="text" placeholder="Spielername"></td>';
-          strReturn +='<td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td></tr>';
+          //strReturn +='<td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td>';
+          strReturn +='<td id="figur"'+i+'>';
+          strReturn += '<div class="slideshow-container">';
+          $.post("externPHP/gallery.php", "" ,function(data){
+
+                var obj = JSON.parse(data);
+                //Object.key(obj).length;
+                for (var i = 3; i < Object.keys(obj).length ; i++) {
+
+                    var strReturn = "";
+                    strReturn += '<div class="mySlides fade">';
+                    strReturn += '<img src="assets/figures/svg/'+obj[i]+'">'; 
+                    strReturn += '</div>';
+
+                }
+                
+
+            });
+
+            //<!-- Next and previous buttons -->
+            strReturn += '<a class="prev" onclick="plusSlides(-1)">&#10094;</a>';
+            strReturn += '<a class="next" onclick="plusSlides(1)">&#10095;</a>';
+            strReturn += '</div>';
+        
+          strReturn += '</td></tr>';
         }
         document.getElementById("spielertable").innerHTML = strReturn;
 
