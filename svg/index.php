@@ -33,51 +33,35 @@ window.onload = function(){
 }
 
 function getSpielFiguren(){
-
+    var id = $('#spielerzahl').val();
+    
     $.post("externPHP/gallery.php", "" ,function(data){
 
         var obj = JSON.parse(data);
-
         var length = Object.keys(obj).length
 
-        for (var i = 3; i < length; i++) {
-            console.log(obj[i]);
+        for (var j = 0; j < id; j++) {
             
-        }     
+            for (var i = 3; i < length; i++) {
+                //console.log(obj[i]);
+                var strReturn = "";
+                strReturn += '<div class="mySlides'+j+'">';
+                strReturn += '<img src="assets/figures/svg/'+obj[i]+'">'; 
+                strReturn += '</div>';
 
+                $('#figur'+j).children('#slideshow').prepend(strReturn); 
+            }
+            
+        }
     });
 
+
 }
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
-}
-
 
 //Spielerzahl schreiben/holen
 function getSpielerZahl(spielerzahl){
 
-     getSpielFiguren();
+     
 
 
 
@@ -100,27 +84,12 @@ function getSpielerZahl(spielerzahl){
           j= i+1;
           strReturn +='<tr><td>'+j+'</td><td><input id="spielerName'+i+'" type="text" placeholder="Spielername"></td>';
           //strReturn +='<td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td>';
-          strReturn +='<td id="figur"'+i+'>';
-          strReturn += '<div class="slideshow-container">';
-          $.post("externPHP/gallery.php", "" ,function(data){
-
-                var obj = JSON.parse(data);
-                //Object.key(obj).length;
-                for (var i = 3; i < Object.keys(obj).length ; i++) {
-
-                    var strReturn = "";
-                    strReturn += '<div class="mySlides fade">';
-                    strReturn += '<img src="assets/figures/svg/'+obj[i]+'">'; 
-                    strReturn += '</div>';
-
-                }
+          strReturn +='<td id="figur'+i+'">';
+          strReturn += '<div id="slideshow" class="slideshow-container">';
                 
-
-            });
-
             //<!-- Next and previous buttons -->
-            strReturn += '<a class="prev" onclick="plusSlides(-1)">&#10094;</a>';
-            strReturn += '<a class="next" onclick="plusSlides(1)">&#10095;</a>';
+            strReturn += '<a class="prev" onclick="plusSlides(-1,'+i+')">&#10094;</a>';
+            strReturn += '<a class="next" onclick="plusSlides(1,'+i+')">&#10095;</a>';
             strReturn += '</div>';
         
           strReturn += '</td></tr>';
@@ -129,6 +98,9 @@ function getSpielerZahl(spielerzahl){
 
         var btnSafe = document.getElementById("safe");
         btnSafe.style.display = "";
+
+        //Hier kommen die Bilder dazu
+        getSpielFiguren();
     }
 
 }
@@ -154,11 +126,7 @@ function getParam(){
 
 }
 
-// Farbe aus ColorPicker auslesen
-// function getColor(color){
-// location.href=window.location.href+"&spieler"+count+"farbe="+color;
-// count++;
-// }
+
 
 </script>
 
@@ -181,7 +149,7 @@ function getParam(){
                 <span class="close">&times;</span>
                 <div class="spielerzahl">
                     <label for="spielerzahl">Wie viele spielen?</label>
-                    <input id="spielerzahl" placeholder="Bitte eine Zahl eingeben..." type="text" onkeyup="getSpielerZahl(this.value)" style=" <?php if(isset($_GET['ZAHL'])){echo "display:none"; } ?>">
+                    <input id="spielerzahl" placeholder="Bitte eine Zahl eingeben..." type="text" onkeyup="getSpielerZahl(this.value)" style ="display: <?php if(isset($_GET['ZAHL'])){echo "none"; } ?>">
                     <label style="margin-left:25;" id="spielerzahlID"><?php echo @$_GET['ZAHL'] ?></label>
                 </div>
                 <div id="spielertable" class="table">
@@ -217,7 +185,27 @@ function getParam(){
             }
             }
 
+var slideIndex = [1,1];
+var slideId = ["mySlides0", "mySlides1"]
+showSlides(1, 0);
+showSlides(1, 1);
 
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  
+  if (n > x.length) {slideIndex[no] = 1}    
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }  
+  
+  x[slideIndex[no]-1].style.display = "block";  
+}
 
         </script>
     </div>
