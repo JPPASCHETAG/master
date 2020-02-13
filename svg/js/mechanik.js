@@ -112,6 +112,8 @@
           
           spielerAufEins.style.top = Feld1Left+"px";
           spielerAufEins.style.left = Feld1Top+"px";
+
+          addModalContent("Tut mir leid, dass du geschlagen wurdest.")
         }
       }
       
