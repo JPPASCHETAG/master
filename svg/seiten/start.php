@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="../CSS/start.CSS">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="../js/mechanik.js"></script>
     </head>
     <body>
@@ -45,20 +46,17 @@ window.onclick = function(event) {
 
     <?php
             $spielerinsgesammt = count($_GET);
+            $spielerinsgesammt = $spielerinsgesammt / 2;
             $StrTable ="";
      
             // Die Tabelle links oben
               $StrTable .= '<table class="spielerinfo" id="spielerinfo" style="left:1%; position: absolute;  top: 1%;">';
 
               //Platz für den Würfel
-              for ($i=0; $i < 3 ; $i++) {
-  
+              for ($i=0; $i < $spielerinsgesammt ; $i++) {
+                  
                   $spielername = $_GET['spielerName'.$i];
-
-                  $spielername = $_GET['spielerName'.$i];
-                  if($spielername == null){
-                    return;
-                  }
+                  $spielerFigur = $_GET['figur'.$i];
   
                   //SpaltenInhalt für jeden spieler anlegen
                   $StrTable .="<tr>";
@@ -76,6 +74,8 @@ window.onclick = function(event) {
                   $StrTable .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
   
                   $StrTable .='<td id=position'.$i.' style="display: none">1</td>';
+
+                  $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
               
                   $StrTable .="</tr>";
 
@@ -92,7 +92,6 @@ window.onclick = function(event) {
   
                   $spielername = $_GET['spielerName'.$i];
 
-                  $spielername = $_GET['spielerName'.$i];
                   if($spielername == null){
                     return;
                   }

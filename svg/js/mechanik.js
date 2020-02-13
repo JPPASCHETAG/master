@@ -238,16 +238,13 @@
  }
 
  function getSpielerFigur(id){
-     var figuren = [
-         '<object class="figur" style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/014-alien.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/017-satyr.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/021-scarecrow.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/020-werewolf.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-     ]
+     
+    console.log(id);
+    
+    var figur = $('#figur'+id).html();
+    console.log(figur);
 
-     var spieler = figuren[id];
+     var spieler = '<object class="figur" style="position: absolute;" id="svg_figur'+id+'" data="../assets/figures/svg/'+figur+'" type="image/svg+xml" height="5%" width="5%"></object>';
      return spieler;
 
      
