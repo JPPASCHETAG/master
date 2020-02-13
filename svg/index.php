@@ -43,9 +43,9 @@ function getSpielFiguren(){
         for (var j = 0; j < id; j++) {
             
             for (var i = 3; i < length; i++) {
-                //console.log(obj[i]);
+                
                 var strReturn = "";
-                strReturn += '<div class="mySlides'+j+'">';
+                strReturn += '<div class="mySlides'+j+' Figuren">';
                 strReturn += '<img src="assets/figures/svg/'+obj[i]+'">'; 
                 strReturn += '</div>';
 
@@ -61,9 +61,8 @@ function getSpielFiguren(){
 //Spielerzahl schreiben/holen
 function getSpielerZahl(spielerzahl){
 
-     
-
-
+    //Falls der Wert geändert wird alles löschen
+    $('#spielertable').html("");
 
   var farben = [
            "#33cccc",
@@ -86,7 +85,7 @@ function getSpielerZahl(spielerzahl){
           //strReturn +='<td><input id="spielerFarbe'+i+'" type="color" value="'+farben[i]+'" disabled></td>';
           strReturn +='<td id="figur'+i+'">';
           strReturn += '<div id="slideshow" class="slideshow-container">';
-                
+          strReturn += '<div class="mySlides'+i+'" style="display: block;"><img src="assets/figures/svg/002-kraken.svg"></div>';
             //<!-- Next and previous buttons -->
             strReturn += '<a class="prev" onclick="plusSlides(-1,'+i+')">&#10094;</a>';
             strReturn += '<a class="next" onclick="plusSlides(1,'+i+')">&#10095;</a>';
@@ -94,10 +93,10 @@ function getSpielerZahl(spielerzahl){
         
           strReturn += '</td></tr>';
         }
-        document.getElementById("spielertable").innerHTML = strReturn;
+        $('#spielertable').append(strReturn);
 
-        var btnSafe = document.getElementById("safe");
-        btnSafe.style.display = "";
+
+        $('#safe').show();
 
         //Hier kommen die Bilder dazu
         getSpielFiguren();
@@ -107,21 +106,26 @@ function getSpielerZahl(spielerzahl){
 
 function getParam(){
 
-    var spielerzahl = document.getElementById("spielerzahl").value;
+    var spielerzahl = $("#spielerzahl").val();
+    
     var strDaten ='?';
 
     for (var i = 0; i < spielerzahl; i++) {
 
-      var spielerName = document.getElementById("spielerName"+i).value;
+      var spielerName = $("#spielerName"+i).val();
+
+      var spielFigur = $(".mySlides"+i+":visible").html();
+      spielFigur = spielFigur.slice(29 , -2);      
 
       if(i!=0){
         strDaten+="&";
       }
 
       strDaten += 'spielerName'+i+'='+spielerName;
+      strDaten += '&figur'+i+'='+spielFigur;
 
     }
-
+    
     window.open("seiten/start.php"+strDaten,"_self");
 
 }
@@ -185,8 +189,8 @@ function getParam(){
             }
             }
 
-var slideIndex = [1,1];
-var slideId = ["mySlides0", "mySlides1"]
+var slideIndex = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+var slideId = ["mySlides0", "mySlides1", "mySlides2", "mySlides3", "mySlides4", "mySlides5", "mySlides6", "mySlides7", "mySlides8", "mySlides10", "mySlides11", "mySlides12", "mySlides13", "mySlides14", "mySlides15"]
 showSlides(1, 0);
 showSlides(1, 1);
 
