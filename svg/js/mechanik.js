@@ -27,13 +27,29 @@
 
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
-    Output(FieldText);
+    
 
+    //Im Text nach der Art suchen und dann alles ersetzen mit der Frage
+    if(FieldText.search("IHNN") >= 0){
+      FieldText = "";
+
+      $.post("../externPHP/ajxTXT.php","",function(data){
+        
+        var obj = JSON.parse(data);
+        var length = Object.keys(obj).length
+
+        var zahl = Math.floor(Math.random() * length) + 1; 
+        
+        addModalContent(obj[zahl]);
+        console.log(obj[zahl]);
+
+      });
+  }
+  Output(FieldText);
 
     // //Funktionen der Felder ausführen
     // var functionName = "Feld"+fieldID;
     // executeFunctionByName(functionName,window,id);
-
 
  }
 
@@ -42,6 +58,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1;   
+    zahl = 4;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -133,7 +150,7 @@
         "Alle trinken",
         "Geh auf Feld 32",
         "Trink 5 und gehe zum Start",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Du bist jetzt Questionmaster",
         "Kategorie",
         "Alle Mädls trinken",
@@ -154,7 +171,7 @@
         "Kategorie",
         "Du bist jetzt Questionmaster",
         "Kopf oder Zahl",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Wwae-Frage",
         "Alle Ausländer trinken",
         "Alle Jungs trinken",
@@ -169,7 +186,7 @@
         "Pantomime",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Alle Dummen trinken",
         "Die kleinste trinkt",
         "Der größte trinkt",
@@ -192,7 +209,7 @@
         "Mädels trinekn ihre Körbchen in Schluck(A=1,B=2,...)",
         "WdL-Frage",
         "Alle Jungs trinken",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Pferderennen",
         "Du bist jetzt Nosemaster",
         "Montagsmaler",
@@ -219,7 +236,7 @@
         "Du bist jetzt Nosemaster",
         "Alle Mädls trinken",
         "Such dir einen aus der trinkt",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Pferderennen",
         "Verteile 8 Schluck",
         "Wwae-Frage",
@@ -240,15 +257,11 @@
  }
 
  function getSpielerFigur(id){
-     
-    console.log(id);
     
     var figur = $('#figur'+id).html();
-    console.log(figur);
 
      var spieler = '<object class="figur" style="position: absolute;" id="svg_figur'+id+'" data="../assets/figures/svg/'+figur+'" type="image/svg+xml" height="5%" width="5%"></object>';
      return spieler;
-
      
  }
 
@@ -297,7 +310,8 @@ function executeFunctionByName(functionName, context /*, args */) {
   //den button an den nächsten Spieler übergeben
   function nextSpieler(idgesamt,nextID){
     
-      var HTMLbutton = '<button onclick="javaskript:roll(this)">Würfeln</button>';
+      //var HTMLbutton = '<button onclick="javaskript:roll(this)">Würfeln</button>';
+      var HTMLbutton = '<i class="fas fa-dice" onclick="javaskript:roll(this)"></i>';
   
       var spieler = document.getElementById(idgesamt);
       spieler.innerHTML = '';
@@ -306,23 +320,6 @@ function executeFunctionByName(functionName, context /*, args */) {
       nextSpieler.innerHTML = HTMLbutton;
   }
   
-  //die zugeordnete Farbe für jeden Spieler
-  function getSPielerFarbe(id){
-  
-    var farben = [
-             "#33cccc",
-             "#0066ff",
-             "#ff0000",
-             "#00cc00",
-             "#ffff00",
-             "#ff00ff"
-         ];
-  
-  var spielerFarbe = farben[id];
-  
-  return spielerFarbe;
-  
-  }
   
   function Output(strOutput){
   
@@ -379,12 +376,7 @@ function executeFunctionByName(functionName, context /*, args */) {
   
     positionFeld.innerHTML = fieldNR;
   
-    //feld einfärben
-    var nextFeld = document.getElementById(fieldNR);
-    var feld = document.getElementById(position);
-  
-    nextFeld.style.backgroundColor  = getSPielerFarbe(id);
-    feld.style.backgroundColor  = "white";
+
     feldText = nextFeld.firstChild.innerHTML;
   
     return feldText;
@@ -414,3 +406,43 @@ function executeFunctionByName(functionName, context /*, args */) {
     return zahl;
   
   }
+
+
+
+
+
+
+
+function Feld2(){
+  return;
+}
+
+function Feld3(id){
+  setNewField(id,32);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
