@@ -87,6 +87,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1;   
+    zahl = 4;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -121,10 +122,9 @@
     var x = svgItem.getBoundingClientRect();
     var top = Math.round(x.top + pageYOffset);
     var left = Math.round(x.left + pageXOffset);
-    
-    left = left + 25;
-    topPX = top+"px";
-    leftPX = left+"px";
+  
+    topPX = top+40+"px";
+    leftPX = left+40+"px";
 
     //Spielerfigur holen
     var figur = getSpielerFigur(id);
@@ -145,8 +145,10 @@
       
       if(i != id){
         var pos = allefiguren.item(i).getBoundingClientRect();  
+        var schlagenTop = pos.top +"px";
+        var schlagenLeft = pos.left +"px";
         
-        if (top == Math.round(pos.top) && left == Math.round(pos.left)) {
+        if (topPX == schlagenTop && leftPX == schlagenLeft) {
           
           //Die Spielfigur auf Feld1 setzen          
           var spielerAufEins = document.getElementById("svg_figur"+i);
@@ -288,7 +290,7 @@
     
     var figur = $('#figur'+id).html();
 
-     var spieler = '<object class="figur" style="position: absolute;" id="svg_figur'+id+'" data="../assets/figures/svg/'+figur+'" type="image/svg+xml" height="5%" width="5%"></object>';
+     var spieler = '<object class="figur" style="position: absolute;" id="svg_figur'+id+'" data="../assets/figures/svg/'+figur+'" type="image/svg+xml" height="7%" width="7%"></object>';
      return spieler;
      
  }
