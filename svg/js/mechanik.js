@@ -21,27 +21,107 @@
     //den Würfel-Button weitergeben
     nextSpieler(idgesamt,nextID);
     
+    
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
     var fieldID = NextField(id);        
-
+  
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
-    Output(FieldText);
+    
+
+    //Im Text nach der Art suchen und dann alles ersetzen mit der Frage
+      switch(FieldText){
+        case "P":
+        case "WWAE":
+        case "IHNN":
+        case "WDL":
+          var filename = FieldText+"-Fragen.txt";
+          $.post("../externPHP/ajxTXT.php",'filename='+filename,function(data){
+            
+            var obj = JSON.parse(data);
+
+            var length = Object.keys(obj).length;
+            var zahl = Math.floor(Math.random() * length) + 1; 
+
+            //Automatische Spieler Auswahl  
+            if(FieldText == "P"){
+              var strReturn = obj[zahl].toString();              
+                            
+              var zahl2  = Math.floor(Math.random() * alleSpieler); 
+              var SpielerNameSpiel = $("#name"+zahl2).text();
+              
+              strReturn = strReturn.replace("SPIELER", SpielerNameSpiel);              
+              Output(strReturn);
+            
+            }else if (FieldText == "WWAE"){
+
+              var zahl3  = Math.floor(Math.random() * alleSpieler); 
+              var spieler1 = $("#name"+zahl3).text();
+              var zahl4  = Math.floor(Math.random() * alleSpieler); 
+              var spieler2 = $("#name"+zahl4).text();
+              
+              Output(obj[zahl]);
+              addModalContent("<br>"+spieler1+" oder "+spieler2+"?");
+
+            } else {
+              Output(obj[zahl]);
+            }  
+    
+          });
+        break;
+        default:
+          Output(FieldText);
+          break;
+      }
+      
+      switch (fieldID) {
+        case 3:
+          console.log("Feld3");
+          
+          //getFieldPos(32);
+          //setNewField(id,32);
+          break;
+        case 4:
+
+          break;
+        case 35:
+        
+          break;
+        case 37:
+
+          break;
+        case 47:
+
+          break;
+        case 51:
+
+          break;
+        case 76:
+
+          break;  
+        case 81:
+
+          break;
+        default:
+          break;
+      }
 
 
-    // //Funktionen der Felder ausführen
-    // var functionName = "Feld"+fieldID;
-    // executeFunctionByName(functionName,window,id);
 
+    //Funktionen der Felder ausführen
+    //var functionName = "Feld"+fieldID;
+    //executeFunctionByName(functionName,document,id);
 
  }
+ 
 
 
  function NextField(id){
 
     //Zahl generieren
-    var zahl = Math.floor(Math.random() * 6) + 1;   
+    var zahl = Math.floor(Math.random() * 6) + 1; 
+    //zahl = 2;  
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -52,35 +132,18 @@
     var nextPosition = position + zahl;
     positionFeld.innerHTML = nextPosition;
 
-
-    // das SVG Element holen
-    var mySVG = document.getElementById('svg_obj'),
-    svgDoc;
-    svgDoc = mySVG.contentDocument;
-
     //neue FeldID
-    var neuesFeld = "Feld"+nextPosition;
 
-    //Die Koordinaten des neuen Feldes
-    var svgItem = svgDoc.getElementById(neuesFeld);
+    var nextPos = getFieldPos(nextPosition);
+    topPX = nextPos[0]+40+"px";
+    leftPX = nextPos[1]+40+"px";
     
     //Die Koordinaten von Feld1 holen
-    var Feld1 = svgDoc.getElementById("Feld2").getBoundingClientRect();
-    var Feld1Top =  Feld1.x;    
-    Feld1Top = Feld1Top-30;
-    var Feld1Left = Feld1.y;
-    Feld1Left = Feld1Left-15;   
-    
-
-    //Koordinaten vom nächsten Feld holen
-    var x = svgItem.getBoundingClientRect();
-    var top = Math.round(x.top + pageYOffset);
-    var left = Math.round(x.left + pageXOffset);
-    
-    left = left + 25;
-    topPX = top+"px";
-    leftPX = left+"px";
-
+    var Feld1 = getFieldPos(1);
+    var Feld1Left =  Feld1[0];    
+    Feld1Left = Feld1Left+15;   
+    var Feld1Top = Feld1[1];
+    Feld1Top = Feld1Top+30;
     //Spielerfigur holen
     var figur = getSpielerFigur(id);
 
@@ -100,8 +163,10 @@
       
       if(i != id){
         var pos = allefiguren.item(i).getBoundingClientRect();  
+        var schlagenTop = pos.top +"px";
+        var schlagenLeft = pos.left +"px";
         
-        if (top == Math.round(pos.top) && left == Math.round(pos.left)) {
+        if (topPX == schlagenTop && leftPX == schlagenLeft) {
           
           //Die Spielfigur auf Feld1 setzen          
           var spielerAufEins = document.getElementById("svg_figur"+i);
@@ -112,6 +177,8 @@
           
           spielerAufEins.style.top = Feld1Left+"px";
           spielerAufEins.style.left = Feld1Top+"px";
+
+          addModalContent("Tut mir leid, dass du geschlagen wurdest.")
         }
       }
       
@@ -129,55 +196,55 @@
         "",
         "Start",
         "Alle trinken",
-        "Geh auf Feld 32",
-        "Trink 5 und gehe zum Start",
-        "(Ich hab noch nie)",
+        "Geh auf Feld 32",                                                   //FELD3                 
+        "Trink 5 und gehe zum Start",                                        //FELD4               
+        "IHNN",
         "Du bist jetzt Questionmaster",
         "Kategorie",
         "Alle Mädls trinken",
-        "WdL-Frage",
+        "WDL",
         "Abstimmung, dann der nüchternste trinkt",
         "Der Älteste trinkt",
         "Du bist jetzt Nosemaster",
         "Regel",
-        "P-Frage",
+        "P",
         "Wwae-Frage8Stimmt ab)",
         "Stein/Schere/Papier um 5 Schluckk",
         "Such dir einen aus der trinkt",
         "Kopf oder Zahl",
         "TRINK",
-        "WdL-Frage",
+        "WDL",
         "Pferderennen",
         "BONUS: TRINKE IMMER 2x so viel",
         "Kategorie",
         "Du bist jetzt Questionmaster",
         "Kopf oder Zahl",
-        "(Ich hab noch nie)",
-        "Wwae-Frage",
+        "IHNN",
+        "WWAE",
         "Alle Ausländer trinken",
         "Alle Jungs trinken",
-        "WdL-Frage",
+        "WDL",
         "Regel",
         "Du bist jetzt Nosemaster",
-        "P-Frage",
+        "P",
         "Hole alles auf was du auf den weitesten zurückliegst.",
-        "Gehe auf Start",
+        "Gehe auf Start",                                                         //FELD34
         "Wasserfall",
-        "Gehe 2 Felde zurück",
+        "Gehe 2 Felde zurück",                                                    //FELD36
         "Pantomime",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Alle Dummen trinken",
         "Die kleinste trinkt",
         "Der größte trinkt",
         "Such dir einen aus der trinkt",
-        "P-Frage",
-        "Gehe auf Feld 38",
+        "P",
+        "Gehe auf Feld 38",                                                       //FELD47
         "Der Jüngste trinkt",
         "Alle mit kleinen Geschwistern trinken",
         "Sing ein Lied von Mia Julia oder Trink 5 Schluck",
-        "Such jemanden aus der wieder auf Start geht",
+        "Gehe auf Feld 53",                                                       //FELD51
         "SAUF",
         "Pantomime",
         "Kopf oder Zahl",
@@ -186,47 +253,47 @@
         "Du bist jetzt Questionmaster",
         "Regel",
         "Such dir einen aus der trinkt",
-        "P-Frage",
+        "P",
         "Mädels trinekn ihre Körbchen in Schluck(A=1,B=2,...)",
-        "WdL-Frage",
+        "WDL",
         "Alle Jungs trinken",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Pferderennen",
         "Du bist jetzt Nosemaster",
         "Montagsmaler",
         "Würfel nochmal",
-        "Wwae-Frage",
+        "WWAE",
         "Alle die Single sind trinken",
         "Abstimmung, dann der nüchternste trinkt",
         "Wasserfall",
         "Der, der zuletzt auf dem Klo war muss trinken",
         "Stimme einen Schlager an. Wenn mehr als 2 mitsingen trinken alle.",
         "Montagsmaler",
-        "Würfel noch mal und gehe rückwärts",
+        "Gehe auf Feld 72",                                                         //FELD75
         "Stein/Schere/Papier um 10 Schluckk",
-        "Wwae-Frage",
+        "WWAE",
         "Pantomime",
         "Hol SpielerXY ein neues Getränk",
-        "Gehe auf Feld 69",
+        "Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
         "Regel",
         "HAU REIN",
         "Alle Raucher trinken die Anzahl an Kippen, die sie dabei haben",
-        "P-Frage",
+        "P",
         "Du bist jetzt Nosemaster",
         "Alle Mädls trinken",
         "Such dir einen aus der trinkt",
-        "(Ich hab noch nie)",
+        "IHNN",
         "Pferderennen",
         "Verteile 8 Schluck",
-        "Wwae-Frage",
+        "WWAE",
         "Pantomime",
         "Montagsmaler",
         "Ex und jemand anderes muss auch exen",
         "Wasserfall",
         "Ex und hop",
-        "Gehe auf Feld 38(Fick dich Animation)",
+        "Gehe auf Feld 38",                                                          //FELD99
         "ZIEL"
     ];
 
@@ -238,18 +305,11 @@
  }
 
  function getSpielerFigur(id){
-     var figuren = [
-         '<object class="figur" style="position: absolute;" id="svg_figur0" data="../assets/figures/svg/002-kraken.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur1" data="../assets/figures/svg/008-mushroom.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur2" data="../assets/figures/svg/014-alien.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur3" data="../assets/figures/svg/017-satyr.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur4" data="../assets/figures/svg/021-scarecrow.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-         '<object class="figur" style="position: absolute;" id="svg_figur5" data="../assets/figures/svg/020-werewolf.svg" type="image/svg+xml" height="5%" width="5%"></object>',
-     ]
+    
+    var figur = $('#figur'+id).html();
 
-     var spieler = figuren[id];
+     var spieler = '<object class="figur" style="position: absolute;" id="svg_figur'+id+'" data="../assets/figures/svg/'+figur+'" type="image/svg+xml" height="7%" width="7%"></object>';
      return spieler;
-
      
  }
 
@@ -298,7 +358,8 @@ function executeFunctionByName(functionName, context /*, args */) {
   //den button an den nächsten Spieler übergeben
   function nextSpieler(idgesamt,nextID){
     
-      var HTMLbutton = '<button onclick="javaskript:roll(this)">Würfeln</button>';
+      //var HTMLbutton = '<button onclick="javaskript:roll(this)">Würfeln</button>';
+      var HTMLbutton = '<i class="fas fa-dice" onclick="javaskript:roll(this)"></i>';
   
       var spieler = document.getElementById(idgesamt);
       spieler.innerHTML = '';
@@ -307,23 +368,6 @@ function executeFunctionByName(functionName, context /*, args */) {
       nextSpieler.innerHTML = HTMLbutton;
   }
   
-  //die zugeordnete Farbe für jeden Spieler
-  function getSPielerFarbe(id){
-  
-    var farben = [
-             "#33cccc",
-             "#0066ff",
-             "#ff0000",
-             "#00cc00",
-             "#ffff00",
-             "#ff00ff"
-         ];
-  
-  var spielerFarbe = farben[id];
-  
-  return spielerFarbe;
-  
-  }
   
   function Output(strOutput){
   
@@ -372,22 +416,22 @@ function executeFunctionByName(functionName, context /*, args */) {
   
     modalContent.innerHTML = modal;
   }
+
+
   
   function setNewField(id,fieldNR){
-    var positionFeld = document.getElementById('position'+id);
-    var position = positionFeld.innerHTML;
-    position = parseInt(position);
-  
-    positionFeld.innerHTML = fieldNR;
-  
-    //feld einfärben
-    var nextFeld = document.getElementById(fieldNR);
-    var feld = document.getElementById(position);
-  
-    nextFeld.style.backgroundColor  = getSPielerFarbe(id);
-    feld.style.backgroundColor  = "white";
-    feldText = nextFeld.firstChild.innerHTML;
-  
+    //aktuelle Position holen
+    $('#position'+id).text(fieldNR);
+    console.log("neues Feld");
+    var Pos = getFieldPos(fieldNR);
+    var top = Pos[0];
+    var left = Pos[1]; 
+   console.log(top);
+   console.log(left);
+   
+    var feldText = getFeldText(fieldNR);
+    console.log(feldText);
+
     return feldText;
   }
   
@@ -415,3 +459,29 @@ function executeFunctionByName(functionName, context /*, args */) {
     return zahl;
   
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
