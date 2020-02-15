@@ -37,13 +37,35 @@
         case "WDL":
           var filename = FieldText+"-Fragen.txt";
           $.post("../externPHP/ajxTXT.php",'filename='+filename,function(data){
-        
+            
             var obj = JSON.parse(data);
 
             var length = Object.keys(obj).length;
             var zahl = Math.floor(Math.random() * length) + 1; 
 
-            Output(obj[zahl]);            
+            //Automatische Spieler Auswahl  
+            if(FieldText == "P"){
+              var strReturn = obj[zahl].toString();              
+                            
+              var zahl2  = Math.floor(Math.random() * alleSpieler); 
+              var SpielerNameSpiel = $("#name"+zahl2).text();
+              
+              strReturn = strReturn.replace("SPIELER", SpielerNameSpiel);              
+              Output(strReturn);
+            
+            }else if (FieldText == "WWAE"){
+
+              var zahl3  = Math.floor(Math.random() * alleSpieler); 
+              var spieler1 = $("#name"+zahl3).text();
+              var zahl4  = Math.floor(Math.random() * alleSpieler); 
+              var spieler2 = $("#name"+zahl4).text();
+              
+              Output(obj[zahl]);
+              addModalContent("<br>"+spieler1+" oder "+spieler2+"?");
+
+            } else {
+              Output(obj[zahl]);
+            }  
     
           });
         break;
@@ -65,7 +87,6 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1;   
-    zahl = 4;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);

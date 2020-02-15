@@ -62,7 +62,7 @@ window.onclick = function(event) {
                   //SpaltenInhalt für jeden spieler anlegen
                   $StrTable .="<tr>";
   
-                  $StrTable .="<td>".$spielername."</td>";
+                  $StrTable .='<td id="name'.$i.'">'.$spielername.'</td>';
   
                   $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
   
