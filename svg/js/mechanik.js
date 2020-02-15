@@ -30,22 +30,29 @@
     
 
     //Im Text nach der Art suchen und dann alles ersetzen mit der Frage
-    if(FieldText.search("IHNN") >= 0){
-      FieldText = "";
-
-      $.post("../externPHP/ajxTXT.php","",function(data){
+      switch(FieldText){
+        case "P":
+        case "WWAE":
+        case "IHNN":
+        case "WDL":
+          var filename = FieldText+"-Fragen.txt";
+          $.post("../externPHP/ajxTXT.php",'filename='+filename,function(data){
         
-        var obj = JSON.parse(data);
-        var length = Object.keys(obj).length
+            var obj = JSON.parse(data);
 
-        var zahl = Math.floor(Math.random() * length) + 1; 
-        
-        addModalContent(obj[zahl]);
-        console.log(obj[zahl]);
+            var length = Object.keys(obj).length;
+            var zahl = Math.floor(Math.random() * length) + 1; 
 
-      });
-  }
-  Output(FieldText);
+            Output(obj[zahl]);            
+    
+          });
+        break;
+        default:
+          Output(FieldText);
+      }
+
+
+  
 
     // //Funktionen der Felder ausführen
     // var functionName = "Feld"+fieldID;
@@ -154,31 +161,31 @@
         "Du bist jetzt Questionmaster",
         "Kategorie",
         "Alle Mädls trinken",
-        "WdL-Frage",
+        "WDL",
         "Abstimmung, dann der nüchternste trinkt",
         "Der Älteste trinkt",
         "Du bist jetzt Nosemaster",
         "Regel",
-        "P-Frage",
+        "P",
         "Wwae-Frage8Stimmt ab)",
         "Stein/Schere/Papier um 5 Schluckk",
         "Such dir einen aus der trinkt",
         "Kopf oder Zahl",
         "TRINK",
-        "WdL-Frage",
+        "WDL",
         "Pferderennen",
         "BONUS: TRINKE IMMER 2x so viel",
         "Kategorie",
         "Du bist jetzt Questionmaster",
         "Kopf oder Zahl",
         "IHNN",
-        "Wwae-Frage",
+        "WWAE",
         "Alle Ausländer trinken",
         "Alle Jungs trinken",
-        "WdL-Frage",
+        "WDL",
         "Regel",
         "Du bist jetzt Nosemaster",
-        "P-Frage",
+        "P",
         "Hole alles auf was du auf den weitesten zurückliegst.",
         "Gehe auf Start",
         "Wasserfall",
@@ -191,7 +198,7 @@
         "Die kleinste trinkt",
         "Der größte trinkt",
         "Such dir einen aus der trinkt",
-        "P-Frage",
+        "P",
         "Gehe auf Feld 38",
         "Der Jüngste trinkt",
         "Alle mit kleinen Geschwistern trinken",
@@ -205,16 +212,16 @@
         "Du bist jetzt Questionmaster",
         "Regel",
         "Such dir einen aus der trinkt",
-        "P-Frage",
+        "P",
         "Mädels trinekn ihre Körbchen in Schluck(A=1,B=2,...)",
-        "WdL-Frage",
+        "WDL",
         "Alle Jungs trinken",
         "IHNN",
         "Pferderennen",
         "Du bist jetzt Nosemaster",
         "Montagsmaler",
         "Würfel nochmal",
-        "Wwae-Frage",
+        "WWAE",
         "Alle die Single sind trinken",
         "Abstimmung, dann der nüchternste trinkt",
         "Wasserfall",
@@ -223,7 +230,7 @@
         "Montagsmaler",
         "Würfel noch mal und gehe rückwärts",
         "Stein/Schere/Papier um 10 Schluckk",
-        "Wwae-Frage",
+        "WWAE",
         "Pantomime",
         "Hol SpielerXY ein neues Getränk",
         "Gehe auf Feld 69",
@@ -232,14 +239,14 @@
         "Regel",
         "HAU REIN",
         "Alle Raucher trinken die Anzahl an Kippen, die sie dabei haben",
-        "P-Frage",
+        "P",
         "Du bist jetzt Nosemaster",
         "Alle Mädls trinken",
         "Such dir einen aus der trinkt",
         "IHNN",
         "Pferderennen",
         "Verteile 8 Schluck",
-        "Wwae-Frage",
+        "WWAE",
         "Pantomime",
         "Montagsmaler",
         "Ex und jemand anderes muss auch exen",
