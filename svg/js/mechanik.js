@@ -21,10 +21,11 @@
     //den Würfel-Button weitergeben
     nextSpieler(idgesamt,nextID);
     
+    
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
     var fieldID = NextField(id);        
-
+  
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
     
@@ -71,23 +72,56 @@
         break;
         default:
           Output(FieldText);
+          break;
+      }
+      
+      switch (fieldID) {
+        case 3:
+          console.log("Feld3");
+          
+          //getFieldPos(32);
+          //setNewField(id,32);
+          break;
+        case 4:
+
+          break;
+        case 35:
+        
+          break;
+        case 37:
+
+          break;
+        case 47:
+
+          break;
+        case 51:
+
+          break;
+        case 76:
+
+          break;  
+        case 81:
+
+          break;
+        default:
+          break;
       }
 
 
-  
 
-    // //Funktionen der Felder ausführen
-    // var functionName = "Feld"+fieldID;
-    // executeFunctionByName(functionName,window,id);
+    //Funktionen der Felder ausführen
+    //var functionName = "Feld"+fieldID;
+    //executeFunctionByName(functionName,document,id);
 
  }
+ 
 
 
  function NextField(id){
 
     //Zahl generieren
-    var zahl = Math.floor(Math.random() * 6) + 1;   
-    zahl = 4;
+    var zahl = Math.floor(Math.random() * 6) + 1; 
+    //zahl = 2;  
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -98,34 +132,18 @@
     var nextPosition = position + zahl;
     positionFeld.innerHTML = nextPosition;
 
-
-    // das SVG Element holen
-    var mySVG = document.getElementById('svg_obj'),
-    svgDoc;
-    svgDoc = mySVG.contentDocument;
-
     //neue FeldID
-    var neuesFeld = "Feld"+nextPosition;
 
-    //Die Koordinaten des neuen Feldes
-    var svgItem = svgDoc.getElementById(neuesFeld);
+    var nextPos = getFieldPos(nextPosition);
+    topPX = nextPos[0]+40+"px";
+    leftPX = nextPos[1]+40+"px";
     
     //Die Koordinaten von Feld1 holen
-    var Feld1 = svgDoc.getElementById("Feld2").getBoundingClientRect();
-    var Feld1Top =  Feld1.x;    
-    Feld1Top = Feld1Top-30;
-    var Feld1Left = Feld1.y;
-    Feld1Left = Feld1Left-15;   
-    
-
-    //Koordinaten vom nächsten Feld holen
-    var x = svgItem.getBoundingClientRect();
-    var top = Math.round(x.top + pageYOffset);
-    var left = Math.round(x.left + pageXOffset);
-  
-    topPX = top+40+"px";
-    leftPX = left+40+"px";
-
+    var Feld1 = getFieldPos(1);
+    var Feld1Left =  Feld1[0];    
+    Feld1Left = Feld1Left+15;   
+    var Feld1Top = Feld1[1];
+    Feld1Top = Feld1Top+30;
     //Spielerfigur holen
     var figur = getSpielerFigur(id);
 
@@ -178,8 +196,8 @@
         "",
         "Start",
         "Alle trinken",
-        "Geh auf Feld 32",
-        "Trink 5 und gehe zum Start",
+        "Geh auf Feld 32",                                                   //FELD3                 
+        "Trink 5 und gehe zum Start",                                        //FELD4               
         "IHNN",
         "Du bist jetzt Questionmaster",
         "Kategorie",
@@ -210,9 +228,9 @@
         "Du bist jetzt Nosemaster",
         "P",
         "Hole alles auf was du auf den weitesten zurückliegst.",
-        "Gehe auf Start",
+        "Gehe auf Start",                                                         //FELD34
         "Wasserfall",
-        "Gehe 2 Felde zurück",
+        "Gehe 2 Felde zurück",                                                    //FELD36
         "Pantomime",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
@@ -222,11 +240,11 @@
         "Der größte trinkt",
         "Such dir einen aus der trinkt",
         "P",
-        "Gehe auf Feld 38",
+        "Gehe auf Feld 38",                                                       //FELD47
         "Der Jüngste trinkt",
         "Alle mit kleinen Geschwistern trinken",
         "Sing ein Lied von Mia Julia oder Trink 5 Schluck",
-        "Such jemanden aus der wieder auf Start geht",
+        "Gehe auf Feld 53",                                                       //FELD51
         "SAUF",
         "Pantomime",
         "Kopf oder Zahl",
@@ -251,12 +269,12 @@
         "Der, der zuletzt auf dem Klo war muss trinken",
         "Stimme einen Schlager an. Wenn mehr als 2 mitsingen trinken alle.",
         "Montagsmaler",
-        "Würfel noch mal und gehe rückwärts",
+        "Gehe auf Feld 72",                                                         //FELD75
         "Stein/Schere/Papier um 10 Schluckk",
         "WWAE",
         "Pantomime",
         "Hol SpielerXY ein neues Getränk",
-        "Gehe auf Feld 69",
+        "Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
         "Regel",
@@ -275,7 +293,7 @@
         "Ex und jemand anderes muss auch exen",
         "Wasserfall",
         "Ex und hop",
-        "Gehe auf Feld 38(Fick dich Animation)",
+        "Gehe auf Feld 38",                                                          //FELD99
         "ZIEL"
     ];
 
@@ -398,17 +416,22 @@ function executeFunctionByName(functionName, context /*, args */) {
   
     modalContent.innerHTML = modal;
   }
+
+
   
   function setNewField(id,fieldNR){
-    var positionFeld = document.getElementById('position'+id);
-    var position = positionFeld.innerHTML;
-    position = parseInt(position);
-  
-    positionFeld.innerHTML = fieldNR;
-  
+    //aktuelle Position holen
+    $('#position'+id).text(fieldNR);
+    console.log("neues Feld");
+    var Pos = getFieldPos(fieldNR);
+    var top = Pos[0];
+    var left = Pos[1]; 
+   console.log(top);
+   console.log(left);
+   
+    var feldText = getFeldText(fieldNR);
+    console.log(feldText);
 
-    feldText = nextFeld.firstChild.innerHTML;
-  
     return feldText;
   }
   
@@ -437,20 +460,6 @@ function executeFunctionByName(functionName, context /*, args */) {
   
   }
 
-
-
-
-
-
-
-function Feld2(){
-  return;
-}
-
-function Feld3(id){
-  setNewField(id,32);
-
-}
 
 
 
