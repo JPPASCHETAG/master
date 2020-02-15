@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="../CSS/start.CSS">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="../assets/font_awesome/css/all.css" rel="stylesheet">
         <script src="../js/mechanik.js"></script>
     </head>
     <body>
@@ -34,71 +36,206 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+function getFieldPos(fieldNr){    
+
+//neue FeldID
+var neuesFeld = "Feld"+fieldNr;
+
+//Die Koordinaten des neuen Feldes
+var mySVG = document.getElementById('svg_obj').contentDocument;
+//console.log(mySVG);
+
+var svgItem = mySVG.getElementById(neuesFeld);
+//Koordinaten vom nächsten Feld holen
+var x = svgItem.getBoundingClientRect();
+var top = Math.round(x.top + pageYOffset);
+var left = Math.round(x.left + pageXOffset);
+
+var arReturn = [
+  top,
+  left
+];
+return arReturn;
+
+}
+
+
 </script>
 
 <body>
-  <div id="svg_div">
+  <div id="svg_div" style="width:100%; margin-top: 50px;">
     <object id="svg_obj" data="../assets/BasicmitID.svg" type="image/svg+xml" height="100%" width="100%"></object>
   </div>
 
     <br>
 
-    <table id="spielerinfo">
-          <th></th>
-            <?php
+    <?php
             $spielerinsgesammt = count($_GET);
+            $spielerinsgesammt = $spielerinsgesammt / 2;
+            $StrTable ="";
+     
+            // Die Tabelle links oben
+              $StrTable .= '<table class="spielerinfo" id="spielerinfo" style="left:1%; position: absolute;  top: 1%;">';
 
-            //Spalten für die Spieler anlegen
-            for ($i=0; $i < $spielerinsgesammt; $i++) {
-              $j = $i+1;
+              //Platz für den Würfel
+              for ($i=0; $i < 3 ; $i++) {
+                  
+                  $spielername = $_GET['spielerName'.$i];
+                  $spielerFigur = $_GET['figur'.$i];
+  
+                  //SpaltenInhalt für jeden spieler anlegen
+                  $StrTable .="<tr>";
+  
+                  $StrTable .='<td id="name'.$i.'">'.$spielername.'</td>';
+  
+                  $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
+  
+                  if($i == 0){
+                    //$StrTable .= '<button onclick="javaskript:roll(this)">Würfeln</button>';
+                    $StrTable .= '<i class="fas fa-dice" onclick="javaskript:roll(this)"></i>';
+                  }
+                  
+                  $StrTable .= '</td>';
+  
+                  //$StrTable .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
+  
+                  $StrTable .='<td id=position'.$i.' style="display: none">1</td>';
 
-              $spielername = $_GET['spielerName'.$i];
+                  $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
 
-              echo '<th id="spielerName'.$i.'">'.$spielername.'</th>';
-            }
+                  $StrTable .='<td style="width: 50px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
+              
+                  $StrTable .="</tr>";
 
-            //SpaltenInhalt für jeden spieler anlegen
-            $strZeile ="<tr>";
+                }
+                $StrTable .="</table>";
+                echo $StrTable;
 
-            //Platz für den Würfel
-            for ($i=0; $i < $spielerinsgesammt ; $i++) {
-              if($i==0){
-                $strZeile .="<td>Würfel</td>";
+              
+              //Die Tabelle Rechts oben
+              $StrTable = '<table class="spielerinfo" id="spielerinfo2" style="right:1%; position: absolute;  top: 1%;">';
 
-                $strZeile .='<td id=würfel'.$i.'><button onclick="javaskript:roll(this)">Würfeln</button></td>';
-              }else {
-                $strZeile .="<td id=würfel".$i."></td>";
-              }
+              //Platz für den Würfel
+              for ($i=3; $i < 6 ; $i++) {
+
+                  if(!isset($_GET['spielerName'.$i])){
+                    return;
+                  }
+                  if(!isset($_GET['figur'.$i])){
+                    return;
+                  }
+  
+                  $spielername = $_GET['spielerName'.$i];
+                  $spielerFigur = $_GET['figur'.$i];
 
 
-            }
+  
+                  //SpaltenInhalt für jeden spieler anlegen
+                  $StrTable .= "<tr>";
+  
+                  $StrTable .="<td>".$spielername."</td>";
+  
+                  $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
+                  
+                  $StrTable .= '</td>';
+  
+                  //$StrTable .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
+  
+                  $StrTable .='<td id=position'.$i.' style="display: none">1</td>';
+                  
+                  $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
 
-            $strZeile .="</tr><tr>";
+                  $StrTable .='<td style="width: 50px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
+              
+                  $StrTable .="</tr>";
+  
+                }
+                $StrTable .="</table>";
+                echo $StrTable;
 
-            //Schlücke
-            for ($i=0; $i < $spielerinsgesammt ; $i++) {
-              if($i==0){
-                $strZeile .="<td>Schlücke</td>";
-              }
-              $strZeile .='<td id=schluck'.$i.' style="text-align:center;">0</td>';
+              //Die Tabelle links unten
+              $StrTable = '<table  class="spielerinfo" id="spielerinfo3" style="width: 48  0px; left:1%; position: absolute;  bottom: 1%;">';
 
-            }
+              //Platz für den Würfel
+              for ($i=6; $i < 9 ; $i++) {
+  
+                if(!isset($_GET['spielerName'.$i])){
+                  return;
+                }
+                if(!isset($_GET['figur'.$i])){
+                  return;
+                }
 
-            $strZeile .='</tr><tr style="display:none;">';
-            //Feldnummer
-            for ($i=0; $i < $spielerinsgesammt ; $i++) {
+                  $spielername = $_GET['spielerName'.$i];
+                  $spielerFigur = $_GET['figur'.$i];
 
-              if($i==0){
-                $strZeile .="<td>Feld</td>";
-              }
+                  //SpaltenInhalt für jeden spieler anlegen
+                  $StrTable .= "<tr>";
+  
+                  $StrTable .="<td>".$spielername."</td>";
+  
+                  $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
+                  
+                  $StrTable .= '</td>';
+  
+                  //$StrTable .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
+  
+                  $StrTable .='<td id=position'.$i.' style="display: none">1</td>';
+                  
+                  $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
 
-              $strZeile .='<td id=position'.$i.' style="text-align:center;">1</td>';
+                  $StrTable .='<td style="width: 50px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
 
-            }
+                  $StrTable .="</tr>";
+  
+                }
+                $StrTable .="</table>";
+                echo $StrTable;
 
-            echo $strZeile;
+            // Die TZabellle links unten
+              $StrTable = '<table class="spielerinfo" id="spielerinfo4" style="width: 48  0px; right:1%; position: absolute;  bottom: 1%;">';
+
+              //Platz für den Würfel
+              for ($i=9; $i < 12 ; $i++) {
+
+                if(!isset($_GET['spielerName'.$i])){
+                  return;
+                }
+                if(!isset($_GET['figur'.$i])){
+                  return;
+                }
+  
+                  $spielername = $_GET['spielerName'.$i];
+                  $spielerFigur = $_GET['figur'.$i];
+
+  
+                  //SpaltenInhalt für jeden spieler anlegen
+                  $StrTable .= "<tr>";
+  
+                  $StrTable .="<td>".$spielername."</td>";
+  
+                  $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
+                  
+                  $StrTable .= '</td>';
+  
+                  //$StrTable .='<td id=schluck'.$i.' style="width: 100px;">0</td>';
+  
+                  $StrTable .='<td id=position'.$i.' style="display: none">1</td>';
+
+                  $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
+
+                  $StrTable .='<td style="width: 50px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
+              
+                  $StrTable .="</tr>";
+  
+                }
+                $StrTable .="</table>";
+                echo $StrTable;
+
              ?>
+<script>
 
-        </table>
 
+</script>
 </body>
