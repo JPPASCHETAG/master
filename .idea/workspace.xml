@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a6fe69e-91c7-4f6b-8b31-8fc3fc7eadca" name="Default Changelist" comment="" />
+    <list default="true" id="9a6fe69e-91c7-4f6b-8b31-8fc3fc7eadca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/svg/seiten/start.php" beforeDir="false" afterPath="$PROJECT_DIR$/svg/seiten/start.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1581054210654</updated>
       <workItem from="1581054213364" duration="1593000" />
+      <workItem from="1581953539078" duration="2722000" />
     </task>
     <servers />
   </component>
@@ -57,7 +61,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
