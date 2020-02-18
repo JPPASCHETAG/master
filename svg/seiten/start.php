@@ -57,20 +57,25 @@ function getFieldPos(fieldNr){
 var neuesFeld = "Feld"+fieldNr;
 
 //Die Koordinaten des neuen Feldes
-var mySVG = document.getElementById('svg_obj').contentDocument;
-//console.log(mySVG);
+var mySVG = document.getElementById('svg_obj');
+    mySVG.addEventListener("load",function(){
+        mySVG.contentDocument;
+        
+        //console.log(mySVG);
 
-var svgItem = mySVG.getElementById(neuesFeld);
-//Koordinaten vom nächsten Feld holen
-var x = svgItem.getBoundingClientRect();
-var top = Math.round(x.top + pageYOffset);
-var left = Math.round(x.left + pageXOffset);
+        var svgItem = mySVG.getElementById(neuesFeld);
+        //Koordinaten vom nächsten Feld holen
+        var x = svgItem.getBoundingClientRect();
+        var top = Math.round(x.top + pageYOffset);
+        var left = Math.round(x.left + pageXOffset);
 
-var arReturn = [
-  top,
-  left
-];
-return arReturn;
+        var arReturn = [
+          top,
+          left
+        ];
+        return arReturn;
+            });
+
 
 }
 
