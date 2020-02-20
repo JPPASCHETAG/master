@@ -41,40 +41,6 @@
 .body{
   font-family: 'Open Sans', sans-serif;
 }
-.firstline{
-  border-bottom: 3px solid black;
-}
-.rechts{
-  border-right: 3px solid black;
-}
-.links{
-  border-left: 3px solid black;
-}
-.normal{
-  border-top: 2px solid black;
-  border-right: 1px dotted black;
-}
-.switch{
-  border-top: 1px dotted black;
-}
-.normal2{
-  border-top: 2px solid black;
-  border-left: 1px dotted black;
-}
-.switch2{
-  border-top: 1px dotted black;
-}
-.column {
-    float: left;
-    width: 10.6%;
-    text-align: center;
-    height: 100px;
-    text-align: center;
-  }
-  .column p{
-    height: 36px;
-  }
-
   /* Clear floats after the columns */
   .row:after {
     content: "";
@@ -90,7 +56,7 @@
   }
 
 .spielerinfo{
-  font-size: 50px;
+  font-size: 25px;
 }
 .spielerinfo td{
   border-right: 1px solid black;
@@ -103,4 +69,8 @@
   border-right: 1px solid black;
   border-bottom: 1px solid black;
 
+}
+#svg_div{
+  width:100%;
+  margin-top: 0px;
 }
