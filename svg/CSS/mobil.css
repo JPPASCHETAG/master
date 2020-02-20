@@ -1,4 +1,16 @@
 .spielerinfo{
   width: 20%;
   font-size: 20px;
+
 }
+
+#svg_div{
+  width: 90%;
+  height: 90%;
+  position: fixed;
+  margin-left: -45%;
+  margin-top: -17%;
+  top: 50%;
+  left: 50%;
+}
+

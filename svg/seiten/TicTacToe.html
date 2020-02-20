@@ -1,0 +1,111 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+	var count = 0;
+	
+		$("document").ready(function(){
+				$(".feld").click(function(event){
+					var id = event.target.id;
+					if(count == 0){
+						if($("#"+id).text() == ""){
+							$("#"+id).text("X");
+						}else{return}
+					}else{
+						if($("#"+id).text() == ""){
+							$("#"+id).text("O");
+						}else{return}
+					}
+
+					checkForWin();
+					
+					if(count == 1){
+						count = 0;
+					}else{
+						count++;	
+					}
+				})
+			
+			});
+			
+	function reset(){
+		$(".feld").each(function(){
+			$(this).text("");
+		});
+	}
+	
+	function checkForWin(){
+		
+		var array = [];
+		
+		$(".feld").each(function(){
+			array.push($(this).text());
+		});
+		
+		if((array[0] == "X" && array[1] == "X" && array[2] == "X") || (array[3] == "X" && array[4] == "X" && array[5] == "X") || (array[6] == "X" && array[7] == "X" && array[8] == "X")){
+		alert("X hat gewonnen!");
+		reset();
+		} else if((array[0] == "O" && array[1] == "O" && array[2] == "O") || (array[3] == "O" && array[4] == "O" && array[5] == "O") || (array[6] == "O" && array[7] == "O" && array[8] == "O")){
+		alert("o hat gewonnen!");
+		reset();
+		} else if((array[0] == "X" && array[4] == "X" && array[8] == "X") || (array[2] == "X" && array[4] == "X" && array[6] == "X")){
+		alert("X hat gewonnen!");
+		reset();
+		} else if((array[0] == "O" && array[4] == "O" && array[8] == "O") || (array[2] == "O" && array[4] == "O" && array[6] == "O")){
+		alert("O hat gewonnen!");
+		reset();
+		} else if((array[0] == "X" && array[3] == "X" && array[6] == "X") || (array[1] == "X" && array[4] == "X" && array[7] == "X") || (array[2] == "X" && array[5] == "X" && array[8] == "X")){
+		alert("X hat gewonnen!");
+		reset();
+		} else if((array[0] == "O" && array[3] == "O" && array[6] == "O") || (array[1] == "O" && array[4] == "O" && array[7] == "O") || (array[2] == "O" && array[5] == "O" && array[8] == "O")){
+		alert("o hat gewonnen!");
+		reset();
+		}else if(array.indexOf("") == -1){
+		alert("Untentschieden!");
+		reset();
+		}
+		
+	}
+	
+	
+	</script>
+	<style>
+		table {
+		width: 300px;
+		height: 300px;
+		position: fixed;
+		margin-left: -150px;
+		margin-top: -150px;
+		top: 50%;
+		left: 50%;
+		}
+	
+		table td{
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			text-align: center;
+			border-radius: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<table>
+			<tr>
+			<td id="1" class="feld" ></td>
+			<td id="2" class="feld" ></td>
+			<td id="3" class="feld" ></td>
+			<tr>
+			<tr>
+			<td id="4" class="feld" ></td>
+			<td id="5" class="feld" ></td>
+			<td id="6" class="feld" ></td>
+			<tr>
+			<tr>
+			<td id="7" class="feld" ></td>
+			<td id="8" class="feld" ></td>
+			<td id="9" class="feld" ></td>
+			<tr>
+		</table>
+	</div>
+</body>
