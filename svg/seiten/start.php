@@ -12,7 +12,6 @@
             var isMobile = findGetParameter("mobil");
             if(isMobile){
                 alert("Du bist auf der Mobilen Seite unterwegs. Diese befindet sich allerdings noch in Arbeit. Es funktioniert trotzdem alles schaut nur nicht so gut aus.");
-                //$('head').append('<link rel="stylesheet" href="../CSS/mobil.CSS">');
                 $.ajax({
                     url:"../CSS/mobil.CSS",
                     success:function(data){

@@ -77,7 +77,7 @@
       
       switch (fieldID) {
         case 3:
-          console.log("Feld3");
+          //console.log("Feld3");
           
           //getFieldPos(32);
           //setNewField(id,32);
@@ -119,9 +119,11 @@
 
  function NextField(id){
 
+    var isMobile = findGetParameter("mobil");
+
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    //zahl = 2;  
+    //zahl = 2;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -135,15 +137,26 @@
     //neue FeldID
 
     var nextPos = getFieldPos(nextPosition);
-    topPX = nextPos[0]+40+"px";
-    leftPX = nextPos[1]+40+"px";
+    if(isMobile){
+        topPX = nextPos[0]+0+"px";
+        leftPX = nextPos[1]+0+"px";
+    }else {
+        topPX = nextPos[0]+0+"px";
+        leftPX = nextPos[1]+20+"px";
+    }
+
     
     //Die Koordinaten von Feld1 holen
     var Feld1 = getFieldPos(1);
-    var Feld1Left =  Feld1[0];    
-    Feld1Left = Feld1Left+15;   
+    var Feld1Left =  Feld1[0];
     var Feld1Top = Feld1[1];
-    Feld1Top = Feld1Top+30;
+    if(isMobile){
+        Feld1Left = Feld1Left;
+        Feld1Top = Feld1Top;
+    }else{
+        Feld1Left = Feld1Left;
+        Feld1Top = Feld1Top+40;
+    }
     //Spielerfigur holen
     var figur = getSpielerFigur(id);
 
@@ -160,13 +173,14 @@
     var allefiguren = document.getElementsByClassName("figur");
     for(var i = 0; i < allefiguren.length; i++)
     {
-      
       if(i != id){
-        var pos = allefiguren.item(i).getBoundingClientRect();  
-        var schlagenTop = pos.top +"px";
-        var schlagenLeft = pos.left +"px";
-        
+        var pos = document.getElementById("svg_figur"+i);
+        var schlagenTop = pos.style.top ;
+        var schlagenLeft = pos.style.left ;
+
         if (topPX == schlagenTop && leftPX == schlagenLeft) {
+            //console.log(allefiguren);
+            console.log("geschlagen");
           
           //Die Spielfigur auf Feld1 setzen          
           var spielerAufEins = document.getElementById("svg_figur"+i);
@@ -178,16 +192,12 @@
           spielerAufEins.style.top = Feld1Left+"px";
           spielerAufEins.style.left = Feld1Top+"px";
 
-          addModalContent("Tut mir leid, dass du geschlagen wurdest.")
+          //funktioniert nicht
+          //addModalContent("Tut mir leid, dass du geschlagen wurdest.")
         }
       }
-      
-      
     }
-
-
     return nextPosition;
-
  }
 
  function getFeldText(FieldID){
