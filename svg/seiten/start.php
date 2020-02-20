@@ -11,7 +11,8 @@
             //Das Mobile CSS laden wenn der Parameter gesetzt ist.
             var isMobile = findGetParameter("mobil");
             if(isMobile){
-                alert("Du bist auf der Mobilen Seite unterwegs. Diese befindet sich allerdings noch in Arbeit. Es funktioniert trotzdem alles schaut nur nicht so gut aus.");
+                screen.orientation.lock("landscape");
+                alert("Du bist auf der Mobilen Seite unterwegs. Diese ist noch nicht fertig entwickelt. Um das beste Spielerlebnis zu haben solltest du das Handy quer benutzen.");
                 $.ajax({
                     url:"../CSS/mobil.CSS",
                     success:function(data){
