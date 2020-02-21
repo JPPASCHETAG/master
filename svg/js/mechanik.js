@@ -24,7 +24,11 @@
     
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
-    var fieldID = NextField(id);        
+    var fieldID = NextField(id);
+    if(fieldID >= 100){
+        Output("Du bist im Ziel");
+        return;
+    }
   
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
@@ -78,40 +82,6 @@
           Output(FieldText);
           break;
       }
-      
-      switch (fieldID) {
-        case 3:
-          //console.log("Feld3");
-          
-          //getFieldPos(32);
-          //setNewField(id,32);
-          break;
-        case 4:
-
-          break;
-        case 35:
-        
-          break;
-        case 37:
-
-          break;
-        case 47:
-
-          break;
-        case 51:
-
-          break;
-        case 76:
-
-          break;  
-        case 81:
-
-          break;
-        default:
-          break;
-      }
-
-
 
     //Funktionen der Felder ausführen
     //var functionName = "Feld"+fieldID;
@@ -127,7 +97,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    //zahl = 20;
+    //zahl = 98;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -138,6 +108,9 @@
     var nextPosition = position + zahl;
     positionFeld.innerHTML = nextPosition;
 
+     if(nextPosition > 100){
+        nextPosition = 100;
+     }
     //neue FeldID
 
     var nextPos = getFieldPos(nextPosition);
