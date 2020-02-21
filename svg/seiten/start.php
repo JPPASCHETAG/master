@@ -171,7 +171,7 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
   echo $StrTable;
 
               //Die Tabelle links unten
-              $StrTable = '<table  class="spielerinfo" id="spielerinfo3" style="width: 48  0px; left:1%; position: absolute;  bottom: 1%;">';
+              $StrTable = '<table  class="spielerinfo" id="spielerinfo3" style="left:1%; position: absolute;  bottom: 1%;">';
 
               //Platz für den Würfel
               for ($i=6; $i < 9 ; $i++) {
@@ -209,7 +209,7 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
                 $StrTable .="</table>";
   echo $StrTable;
             // Die TZabellle links unten
-              $StrTable = '<table class="spielerinfo" id="spielerinfo4" style="width: 48  0px; right:1%; position: absolute;  bottom: 1%;">';
+              $StrTable = '<table class="spielerinfo" id="spielerinfo4" style="right:1%; position: absolute;  bottom: 1%;">';
 
               //Platz für den Würfel
               for ($i=9; $i < 12 ; $i++) {
