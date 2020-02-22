@@ -70,6 +70,10 @@
     
           });
         break;
+      case "TTT":
+          $(".modal").css("padding-top", 0);
+          Output('Spiel eine Runde Tic Tac Toe mit einem Gegner deiner Wahl um 10 Schluck.<br><iframe src="../seiten/TicTacToe.html" frameborder="0" height="350px" ></iframe>');
+          break;
         default:
           Output(FieldText);
           break;
@@ -123,7 +127,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    //zahl = 2;
+    //zahl = 20;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -161,8 +165,10 @@
     var figur = getSpielerFigur(id);
 
     //Spielfigur hinzufügen
-    document.getElementById("svg_div").innerHTML += figur;
-    
+     if(document.getElementById("svg_figur"+id) == null){
+        document.getElementById("svg_div").innerHTML += figur;
+     }
+
     //position setzen
     var spielFigur = "svg_figur"+id;
     figur = document.getElementById(spielFigur);
@@ -171,10 +177,13 @@
 
     //Überprüfen ob jmd geschlagen wird
     var allefiguren = document.getElementsByClassName("figur");
+     console.log(allefiguren);
     for(var i = 0; i < allefiguren.length; i++)
     {
       if(i != id){
         var pos = document.getElementById("svg_figur"+i);
+          console.log(i);
+        console.log(pos);
         var schlagenTop = pos.style.top ;
         var schlagenLeft = pos.style.left ;
 
@@ -206,25 +215,25 @@
         "",
         "Start",
         "Alle trinken",
-        "Geh auf Feld 32",                                                   //FELD3                 
-        "Trink 5 und gehe zum Start",                                        //FELD4               
+        "TTT",//"Geh auf Feld 32",                                                   //FELD3
+        "TTT",//"Trink 5 und gehe zum Start",                                        //FELD4
         "IHNN",
         "Du bist jetzt Questionmaster",
         "Kategorie",
         "Alle Mädls trinken",
         "WDL",
-        "Abstimmung, dann der nüchternste trinkt",
+        "Stimmt ab, wer der nüchternste ist. Derjenige muss trinken.",
         "Der Älteste trinkt",
         "Du bist jetzt Nosemaster",
         "Regel",
         "P",
-        "Wwae-Frage8Stimmt ab)",
+        "WWAE",
         "Stein/Schere/Papier um 5 Schluckk",
         "Such dir einen aus der trinkt",
         "Kopf oder Zahl",
         "TRINK",
         "WDL",
-        "Pferderennen",
+        "TTT",
         "BONUS: TRINKE IMMER 2x so viel",
         "Kategorie",
         "Du bist jetzt Questionmaster",
@@ -238,9 +247,9 @@
         "Du bist jetzt Nosemaster",
         "P",
         "Hole alles auf was du auf den weitesten zurückliegst.",
-        "Gehe auf Start",                                                         //FELD34
+        "TTT",//"Gehe auf Start",                                                         //FELD34
         "Wasserfall",
-        "Gehe 2 Felde zurück",                                                    //FELD36
+        "TTT",//"Gehe 2 Felde zurück",                                                    //FELD36
         "Pantomime",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
@@ -250,11 +259,11 @@
         "Der größte trinkt",
         "Such dir einen aus der trinkt",
         "P",
-        "Gehe auf Feld 38",                                                       //FELD47
+        "TTT",//"Gehe auf Feld 38",                                                       //FELD47
         "Der Jüngste trinkt",
         "Alle mit kleinen Geschwistern trinken",
         "Sing ein Lied von Mia Julia oder Trink 5 Schluck",
-        "Gehe auf Feld 53",                                                       //FELD51
+        "TTT",//"Gehe auf Feld 53",                                                       //FELD51
         "SAUF",
         "Pantomime",
         "Kopf oder Zahl",
@@ -279,12 +288,12 @@
         "Der, der zuletzt auf dem Klo war muss trinken",
         "Stimme einen Schlager an. Wenn mehr als 2 mitsingen trinken alle.",
         "Montagsmaler",
-        "Gehe auf Feld 72",                                                         //FELD75
+        "TTT",//"Gehe auf Feld 72",                                                         //FELD75
         "Stein/Schere/Papier um 10 Schluckk",
         "WWAE",
         "Pantomime",
         "Hol SpielerXY ein neues Getränk",
-        "Gehe auf Feld 69",                                                         //FELD80
+        "TTT",//"Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
         "Regel",

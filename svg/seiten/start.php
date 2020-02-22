@@ -11,7 +11,8 @@
             //Das Mobile CSS laden wenn der Parameter gesetzt ist.
             var isMobile = findGetParameter("mobil");
             if(isMobile){
-                alert("Du bist auf der Mobilen Seite unterwegs. Diese befindet sich allerdings noch in Arbeit. Es funktioniert trotzdem alles schaut nur nicht so gut aus.");
+                screen.orientation.lock("landscape");
+                alert("Du bist auf der Mobilen Seite unterwegs. Diese ist noch nicht fertig entwickelt. Um das beste Spielerlebnis zu haben solltest du das Handy quer benutzen.");
                 $.ajax({
                     url:"../CSS/mobil.CSS",
                     success:function(data){
@@ -170,7 +171,7 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
   echo $StrTable;
 
               //Die Tabelle links unten
-              $StrTable = '<table  class="spielerinfo" id="spielerinfo3" style="width: 48  0px; left:1%; position: absolute;  bottom: 1%;">';
+              $StrTable = '<table  class="spielerinfo" id="spielerinfo3" style="left:1%; position: absolute;  bottom: 1%;">';
 
               //Platz für den Würfel
               for ($i=6; $i < 9 ; $i++) {
@@ -208,7 +209,7 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
                 $StrTable .="</table>";
   echo $StrTable;
             // Die TZabellle links unten
-              $StrTable = '<table class="spielerinfo" id="spielerinfo4" style="width: 48  0px; right:1%; position: absolute;  bottom: 1%;">';
+              $StrTable = '<table class="spielerinfo" id="spielerinfo4" style="right:1%; position: absolute;  bottom: 1%;">';
 
               //Platz für den Würfel
               for ($i=9; $i < 12 ; $i++) {
