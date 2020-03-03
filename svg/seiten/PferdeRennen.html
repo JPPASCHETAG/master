@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+
+
+    <style>
+        #spieldaten{
+            position: absolute;
+        }
+        .myAnimation {
+            width: 10%;
+            height: 30%;
+            position: absolute;
+        }
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px;/*  Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        body{
+            font-family: 'Open Sans', sans-serif;
+        }
+        img{
+            width: 50%;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+    </style>
+    <script>
+
+            function Output(strText){
+                $('#modalWindow').show();
+                $('#modalContent').text(strText);
+            }
+
+            $("document").ready(function () {
+                //die BIlder positionieren
+                var top = 0;
+                $(".myAnimation").each(function () {
+                    var img  = $(this).children();
+                    var height = $(img).height();
+                    $(this).css("top", top);
+                    top = top + height + 10;
+                });
+
+                //das Treppchen unter den Bilder positionieren
+                $("#spieldaten").css("top",top);
+            });
+
+            function myMove() {
+                moveKaro();
+                moveHerz();
+                movePik();
+                moveKreuz();
+            }
+
+            function platzierung(id) {
+                if($("#erster").text() === ""){
+                    $("#erster").text(id);
+                }else if($("#zweiter").text() === ""){
+                    $("#zweiter").text(id);
+                }else if($("#dritter").text() === ""){
+                    $("#dritter").text(id);
+                }else if($("#vierter").text() === ""){
+                    $("#vierter").text(id);
+                }
+            }
+
+            function moveKaro() {
+                var ende = $("#spielfeld").width() - 80;
+                var step = ende/6;
+                var speed = Math.floor(Math.random() * 2500) + 1000;
+                $("#Karo").animate({left: step}, speed ,"linear", function () {
+                    console.log(speed);
+                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    $(this).animate({left: step*2}, speed ,"linear", function () {
+                        console.log(speed);
+                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        $(this).animate({left: step*3}, speed ,"linear", function () {
+                            console.log(speed);
+                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            $(this).animate({left: step*4}, speed ,"linear", function () {
+                                console.log(speed);
+                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                $(this).animate({left: step*5}, speed ,"linear", function () {
+                                    console.log(speed);
+                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    $(this).animate({left: step*6}, speed ,"linear", function () {
+                                        console.log(speed);
+                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        console.log(this.id);
+                                        platzierung(this.id);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+
+            function movePik() {
+                var ende = $("#spielfeld").width() - 80;
+                var step = ende/6;
+                var speed = Math.floor(Math.random() * 2500) + 1000;
+                $("#Pik").animate({left: step}, speed ,"linear", function () {
+                    console.log(speed);
+                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    $(this).animate({left: step*2}, speed ,"linear", function () {
+                        console.log(speed);
+                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        $(this).animate({left: step*3}, speed ,"linear", function () {
+                            console.log(speed);
+                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            $(this).animate({left: step*4}, speed ,"linear", function () {
+                                console.log(speed);
+                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                $(this).animate({left: step*5}, speed ,"linear", function () {
+                                    console.log(speed);
+                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    $(this).animate({left: step*6}, speed ,"linear", function () {
+                                        console.log(speed);
+                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        platzierung(this.id);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+
+            function moveHerz() {
+                var ende = $("#spielfeld").width() - 80;
+                var step = ende/6;
+                var speed = Math.floor(Math.random() * 2500) + 1000;
+                $("#Kreuz").animate({left: step}, speed ,"linear", function () {
+                    console.log(speed);
+                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    $(this).animate({left: step*2}, speed ,"linear", function () {
+                        console.log(speed);
+                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        $(this).animate({left: step*3}, speed ,"linear", function () {
+                            console.log(speed);
+                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            $(this).animate({left: step*4}, speed ,"linear", function () {
+                                console.log(speed);
+                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                $(this).animate({left: step*5}, speed ,"linear", function () {
+                                    console.log(speed);
+                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    $(this).animate({left: step*6}, speed ,"linear", function () {
+                                        console.log(speed);
+                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        platzierung(this.id);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+
+            function moveKreuz() {
+                var ende = $("#spielfeld").width() - 80;
+                var step = ende/6;
+                var speed = Math.floor(Math.random() * 2500) + 1000;
+                $("#Herz").animate({left: step}, speed ,"linear", function () {
+                    console.log(speed);
+                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    $(this).animate({left: step*2}, speed ,"linear", function () {
+                        console.log(speed);
+                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        $(this).animate({left: step*3}, speed ,"linear", function () {
+                            console.log(speed);
+                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            $(this).animate({left: step*4}, speed ,"linear", function () {
+                                console.log(speed);
+                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                $(this).animate({left: step*5}, speed ,"linear", function () {
+                                    console.log(speed);
+                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    $(this).animate({left: step*6}, speed ,"linear", function () {
+                                        console.log(speed);
+                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        platzierung(this.id);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+
+        </script>
+    </head>
+    <body>
+    <!-- The Modal -->
+    <div id="modalWindow" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalContent"></p>
+        </div>
+    </div>
+    <!-- Script für modal -->
+    <script>
+
+        // Get the modal
+        var modal = document.getElementById("modalWindow");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+    </script>
+                <div id ="spielfeld">
+                    <div class="myAnimation"  id="Pik">
+                        <img src="../assets/peak.jpg" alt="Pik">
+                    </div>
+                    <div class="myAnimation" id="Herz">
+                        <img src="../assets/herz.jpg" alt="Herz">
+                    </div>
+                    <div class="myAnimation" id="Kreuz">
+                        <img src="../assets/kreuz.jpg" alt="Kreuz">
+                    </div>
+                    <div class="myAnimation" id="Karo">
+                        <img src="../assets/karo.jpg" alt="Karo">
+                    </div>
+                </div>
+            <div id="spieldaten" >
+                <div>
+                    <table>
+                        <tr><td>1.</td> <td id="erster"></td></tr>
+                        <tr><td>2.</td> <td id="zweiter"></td></tr>
+                        <tr><td>3.</td> <td id="dritter"></td></tr>
+                        <tr><td>4.</td> <td id="vierter"></td></tr>
+                    </table>
+                </div>
+                <p>
+                    <button onclick="myMove()">Click Me</button>
+                </p>
+            </div>
+    </body>
+</html>
