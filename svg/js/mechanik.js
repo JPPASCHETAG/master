@@ -89,14 +89,16 @@
       case "Pferderennen":
           Output("Pferderennen.<br> Wenn Ihr bereit seit öffnet sich ein neuer Tab. <br> <br> <button onclick='openPferderennen()'>Hier klicken</button>");
           break;
+      case "Reaktionstest":
+          if(isMobile){
+              $(".modal").css("padding-top", 0);
+          }
+          Output('Mal sehen wie fit du noch bist<br><iframe src="../seiten/ReactionTest.html" frameborder="0" height="200px" ></iframe>');
+          break;
         default:
           Output(FieldText);
           break;
       }
-
-    //Funktionen der Felder ausführen
-    //var functionName = "Feld"+fieldID;
-    //executeFunctionByName(functionName,document,id);
 
  }
 
@@ -111,7 +113,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    zahl = 22;
+    zahl = 36;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -235,7 +237,7 @@
         "Hole alles auf was du auf den weitesten zurückliegst.",
         "TTT",//"Gehe auf Start",                                                         //FELD34
         "Wasserfall",
-        "TTT",//"Gehe 2 Felde zurück",                                                    //FELD36
+        "Reaktionstest",//"Gehe 2 Felde zurück",                                                    //FELD36
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
@@ -253,7 +255,7 @@
         "SAUF",
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "CT",
-        "Kategorie",
+        "Reaktionstest",
         "Wasserfall",
         "Du bist jetzt Questionmaster",
         "Regel",
@@ -279,7 +281,7 @@
         "WWAE",
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "Hol "+ $("#name"+1).text() +" ein neues Getränk. Er muss natürlich leeer sein, wenn du wieder da bist.",
-        "TTT",//"Gehe auf Feld 69",                                                         //FELD80
+        "Reaktionstest",//"Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
         "Regel",
