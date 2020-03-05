@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../CSS/start.CSS">
+        <link rel="stylesheet" href="../CSS/start.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,7 +14,7 @@
                 screen.orientation.lock("landscape");
                 alert("Du bist auf der Mobilen Seite unterwegs. Diese ist noch nicht fertig entwickelt. Um das beste Spielerlebnis zu haben solltest du das Handy quer benutzen.");
                 $.ajax({
-                    url:"../CSS/mobil.CSS",
+                    url:"../CSS/mobil.css",
                     success:function(data){
                         $("<style></style>").appendTo("head").html(data);
                     }
