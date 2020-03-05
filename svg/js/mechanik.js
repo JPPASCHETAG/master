@@ -25,10 +25,14 @@
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
     var fieldID = NextField(id);
-    if(fieldID >= 100){
+    if(fieldID == 100){
         Output("Du bist im Ziel");
         return;
-    }
+    }else if(fieldID < 100){
+        //dann passiert nichts
+    }else{
+        return;
+      }
   
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
@@ -113,7 +117,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    zahl = 36;
+    //zahl = 51;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -124,9 +128,6 @@
     var nextPosition = position + zahl;
     positionFeld.innerHTML = nextPosition;
 
-     if(nextPosition > 100){
-        nextPosition = 100;
-     }
     //neue FeldID
 
     var nextPos = getFieldPos(nextPosition);
