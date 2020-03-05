@@ -6,10 +6,11 @@
     <script>
         $("document").ready(function () {
             $('#coin').on('click', function () {
-                var flipResult = Math.random();
+                var flipResult = Math.floor(Math.random() * 50) + 1;
+                console.log(flipResult);
                 $('#coin').removeClass();
                 setTimeout(function () {
-                    if (flipResult <= 0.5){
+                    if (flipResult <= 25){
                         $('#coin').addClass("heads");
                     }else {
                         $('#coin').addClass("tails");
