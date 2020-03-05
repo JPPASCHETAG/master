@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reaktionstest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+        }
+
+        #box {
+            width: 290px;
+            height: 175px;
+            background-color: blue;
+            display: none;
+            position: relative;
+        }
+
+        #printReactionTime{
+            text-align: center;
+            position: center;
+        }
+    </style>
+    <script>
+        function getRandomColor() {
+
+            var letters = "0123456789ABCDEF".split('');
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.round(Math.random() * 15)];
+            } //ends for loop
+            return color;
+
+
+        } // ends getRandomColor Function
+
+
+        var clickedTime; var createdTime; var reactionTime;
+
+        function makeBox() {
+            var time=Math.random();
+            time=time*4000;
+
+            setTimeout(function() {
+
+                $("#box").css("borderRadius","0");
+                $("#box").css("backgroundColor",getRandomColor());
+                $("#box").show();
+
+                createdTime=Date.now();
+
+            }, time);
+
+        }
+
+
+    $(document).ready(function () {
+        $("#box").click(function() {
+            console.log("clock");
+
+            clickedTime=Date.now();
+
+            reactionTime=(clickedTime-createdTime)/1000;
+
+            document.getElementById("printReactionTime").innerHTML="Deine Reaktionszeit ist: " + reactionTime + "Sekunden";
+
+        });
+    });
+
+
+
+    </script>
+</head>
+
+<body>
+<p id="printReactionTime"></p>
+
+<button onclick="makeBox()" style="left: 110px; position: absolute;">Starten</button>
+
+<div id="box"></div>
+</body>
+</html>

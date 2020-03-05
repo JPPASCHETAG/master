@@ -24,7 +24,15 @@
     
 
     //aktuelles Feld holen neues Feld berechnen & einfärben
-    var fieldID = NextField(id);        
+    var fieldID = NextField(id);
+    if(fieldID == 100){
+        Output("Du bist im Ziel");
+        return;
+    }else if(fieldID < 100){
+        //dann passiert nichts
+    }else{
+        return;
+      }
   
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
@@ -70,55 +78,37 @@
     
           });
         break;
-      case "TTT":
-          $(".modal").css("padding-top", 0);
+      case "TTT": //Tic Tac Toe
+          if(isMobile){
+              $(".modal").css("padding-top", 0);
+          }
           Output('Spiel eine Runde Tic Tac Toe mit einem Gegner deiner Wahl um 10 Schluck.<br><iframe src="../seiten/TicTacToe.html" frameborder="0" height="350px" ></iframe>');
+          break;
+      case "CT": //CoinToss
+          if(isMobile){
+              $(".modal").css("padding-top", 0);
+          }
+          Output('Setzt alle belibig viele Schlucke auf Kopf oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
+          break;
+      case "Pferderennen":
+          Output("Pferderennen.<br> Wenn Ihr bereit seit öffnet sich ein neuer Tab. <br> <br> <button onclick='openPferderennen()'>Hier klicken</button>");
+          break;
+      case "Reaktionstest":
+          if(isMobile){
+              $(".modal").css("padding-top", 0);
+          }
+          Output('Mal sehen wie fit du noch bist<br><iframe src="../seiten/ReactionTest.html" frameborder="0" height="200px" ></iframe>');
           break;
         default:
           Output(FieldText);
           break;
       }
-      
-      switch (fieldID) {
-        case 3:
-          //console.log("Feld3");
-          
-          //getFieldPos(32);
-          //setNewField(id,32);
-          break;
-        case 4:
-
-          break;
-        case 35:
-        
-          break;
-        case 37:
-
-          break;
-        case 47:
-
-          break;
-        case 51:
-
-          break;
-        case 76:
-
-          break;  
-        case 81:
-
-          break;
-        default:
-          break;
-      }
-
-
-
-    //Funktionen der Felder ausführen
-    //var functionName = "Feld"+fieldID;
-    //executeFunctionByName(functionName,document,id);
 
  }
- 
+
+ function openPferderennen() {
+     window.open("../seiten/PferdeRennen.html");
+ }
 
 
  function NextField(id){
@@ -127,7 +117,7 @@
 
     //Zahl generieren
     var zahl = Math.floor(Math.random() * 6) + 1; 
-    //zahl = 20;
+    //zahl = 51;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -177,18 +167,17 @@
 
     //Überprüfen ob jmd geschlagen wird
     var allefiguren = document.getElementsByClassName("figur");
-     console.log(allefiguren);
+
     for(var i = 0; i < allefiguren.length; i++)
     {
       if(i != id){
         var pos = document.getElementById("svg_figur"+i);
-          console.log(i);
-        console.log(pos);
+
         var schlagenTop = pos.style.top ;
         var schlagenLeft = pos.style.left ;
 
         if (topPX == schlagenTop && leftPX == schlagenLeft) {
-            //console.log(allefiguren);
+
             console.log("geschlagen");
           
           //Die Spielfigur auf Feld1 setzen          
@@ -230,14 +219,14 @@
         "WWAE",
         "Stein/Schere/Papier um 5 Schluckk",
         "Such dir einen aus der trinkt",
-        "Kopf oder Zahl",
+        "CT",
         "TRINK",
         "WDL",
         "TTT",
         "BONUS: TRINKE IMMER 2x so viel",
-        "Kategorie",
+        "Pferderennen",
         "Du bist jetzt Questionmaster",
-        "Kopf oder Zahl",
+        "CT",
         "IHNN",
         "WWAE",
         "Alle Ausländer trinken",
@@ -249,8 +238,8 @@
         "Hole alles auf was du auf den weitesten zurückliegst.",
         "TTT",//"Gehe auf Start",                                                         //FELD34
         "Wasserfall",
-        "TTT",//"Gehe 2 Felde zurück",                                                    //FELD36
-        "Pantomime",
+        "Reaktionstest",//"Gehe 2 Felde zurück",                                                    //FELD36
+        "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "Kategorie",
         "Abstimmung, dann der nüchternste trinkt",
         "IHNN",
@@ -265,9 +254,9 @@
         "Sing ein Lied von Mia Julia oder Trink 5 Schluck",
         "TTT",//"Gehe auf Feld 53",                                                       //FELD51
         "SAUF",
-        "Pantomime",
-        "Kopf oder Zahl",
-        "Kategorie",
+        "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
+        "CT",
+        "Reaktionstest",
         "Wasserfall",
         "Du bist jetzt Questionmaster",
         "Regel",
@@ -291,9 +280,9 @@
         "TTT",//"Gehe auf Feld 72",                                                         //FELD75
         "Stein/Schere/Papier um 10 Schluckk",
         "WWAE",
-        "Pantomime",
-        "Hol SpielerXY ein neues Getränk",
-        "TTT",//"Gehe auf Feld 69",                                                         //FELD80
+        "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
+        "Hol "+ $("#name"+1).text() +" ein neues Getränk. Er muss natürlich leeer sein, wenn du wieder da bist.",
+        "Reaktionstest",//"Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
         "Regel",
@@ -307,7 +296,7 @@
         "Pferderennen",
         "Verteile 8 Schluck",
         "WWAE",
-        "Pantomime",
+        "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "Montagsmaler",
         "Ex und jemand anderes muss auch exen",
         "Wasserfall",
@@ -458,26 +447,7 @@ function executeFunctionByName(functionName, context /*, args */) {
     var modal = document.getElementById("modalWindow");
     modal.style.display = "none";
   }
-  
-  function CoinToss(){
-  
-    var zahl = Math.floor(Math.random() * 1);
-  
-    if(zahl > 0){
-      return "Kopf";
-    }else{
-      return "Zahl";
-    }
-  
-  }
-  
-  function NewRoll(){
-  
-    var zahl = Math.floor(Math.random() * 6) + 1;
-  
-    return zahl;
-  
-  }
+
 
 
 
