@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link href="../assets/font_awesome/css/all.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="topspalte">
+
+<h1>Saufen leicht gemacht!</h1>
+
+<h4>Von Säufern für Säufer</h4>
+
+</div>
+
+<div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Home</a>
+    <a href="seiten/WIP.html">Aktuelle Spiele in Arbeit</a>
+    <div class="dropdown">
+        <button class="dropbtn">Die Spiele
+            <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="seiten/TicTacToe.html?MODE=MAIN">TicTacToe</a>
+            <a href="seiten/CoinToss.html?MODE=MAIN">Münze werfen</a>
+            <a href="seiten/ReactionTest.html?MODE=MAIN">Reaktionstest</a>
+            <a href="seiten/PferdeRennen.html?MODE=MAIN">Pferderennen</a>
+            <a href="index.php">Sauf und ärger dich nicht</a>
+        </div>
+    </div>
+    <a href="index.php">Sauf und ärger dich nicht!</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+
+
+</body>
+</html>

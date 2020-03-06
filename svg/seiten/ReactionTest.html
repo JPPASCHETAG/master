@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Reaktionstest</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="../assets/font_awesome/css/all.css" rel="stylesheet">
     <style>
         body {
             font-family: Verdana, Geneva, sans-serif;
@@ -23,6 +24,30 @@
         }
     </style>
     <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        //um verschiedene Prameter zu finden
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+
+
         function getRandomColor() {
 
             var letters = "0123456789ABCDEF".split('');
@@ -66,6 +91,37 @@
             document.getElementById("printReactionTime").innerHTML="Deine Reaktionszeit ist: " + reactionTime + "Sekunden";
 
         });
+
+        if(findGetParameter("MODE") == "MAIN"){
+
+            $("body").prepend("<div class=\"topspalte\">\n" +
+                "\n" +
+                "<h1>Saufen leicht gemacht!</h1>\n" +
+                "\n" +
+                "<h4>Von Säufern für Säufer</h4>\n" +
+                "\n" +
+                "</div><div class=\"topnav\" id=\"myTopnav\">\n" +
+                "    <a href=\"#home\" class=\"active\">Home</a>\n" +
+                "    <a href=\"WIP.html\">Aktuelle Spiele in Arbeit</a>\n" +
+                "    <div class=\"dropdown\">\n" +
+                "        <button class=\"dropbtn\">Die Spiele\n" +
+                "            <i class=\"fas fa-caret-down\"></i>\n" +
+                "        </button>\n" +
+                "        <div class=\"dropdown-content\">\n" +
+                "            <a href=\"TicTacToe.html?MODE=MAIN\">Reaktionstest</a>\n" +
+                "            <a href=\"CoinToss.html?MODE=MAIN\">Münze werfen</a>\n" +
+                "            <a href=\"PferdeRennen.html?MODE=MAIN\">Pferderennen</a>\n" +
+                "            <a href=\"../index.php\">Sauf und ärger dich nicht</a>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "    <a href=\"../index.php\">Sauf und ärger dich nicht!</a>\n" +
+                "    <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\n" +
+                "</div>");
+
+            $("head").append( '<link rel="stylesheet" href="../CSS/main.css">');
+        }
+
+
     });
 
 
