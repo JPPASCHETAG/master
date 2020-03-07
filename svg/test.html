@@ -7,6 +7,44 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <link href="../assets/font_awesome/css/all.css" rel="stylesheet">
 
+    <style>
+        .bg-image {
+            /* Full height */
+            height: 50%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Images used */
+        .img1 { background-image: url("assets/beerpong.jpg"); }
+        .img2 { background-image: url("assets/masskrug.jpg"); }
+        .img3 { background-image: url(""); }
+        .img4 { background-image: url("img_nature.jpg"); }
+        .img5 { background-image: url("img_forest.jpg"); }
+        .img6 { background-image: url("img_woods.jpg"); }
+
+        /* Position text in the middle of the page/image */
+        .bg-text {
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            font-size: 80px;
+            border: 10px solid #f1f1f1;
+            position: fixed; /* Stay fixed */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -36,6 +74,20 @@
     <a href="index.php">Sauf und ärger dich nicht!</a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
+
+<!--Evtl Hier karten Mit den verschiedenen Spielen drauf?-->
+
+<div class="bg-image img1"></div>
+<div class="bg-image img2"></div>
+<div class="bg-image img3"></div>
+<div class="bg-image img4"></div>
+<div class="bg-image img5"></div>
+<div class="bg-image img6"></div>
+
+<div class="bg-text">Viel Spaß</div>
+
+
+
 
 <script>
     function myFunction() {

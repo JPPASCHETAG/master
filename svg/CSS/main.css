@@ -1,5 +1,19 @@
 body {margin:0;font-family:Arial}
 
+.topspalte{
+    background-image: url("../assets/bier.jpg");
+    background-attachment: fixed;
+    background-position-y: bottom;
+    height: 100px;
+}
+h1{
+    margin: 0;
+}
+
+h4{
+    margin-bottom: 0;
+}
+
 .topnav {
     overflow: hidden;
     background-color: #333;
