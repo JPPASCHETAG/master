@@ -18,8 +18,6 @@
     nextID = 0;
   }
 
-    //den Würfel-Button weitergeben
-    nextSpieler(idgesamt,nextID);
     
     
 
@@ -27,12 +25,17 @@
     var fieldID = NextField(id);
     if(fieldID == 100){
         Output("Du bist im Ziel");
+        var positionFeld = document.getElementById('position'+id);
+        positionFeld.innerHTML = "101";
         return;
     }else if(fieldID < 100){
         //dann passiert nichts
     }else{
+        nextSpieler(idgesamt,nextID);
         return;
       }
+      //den Würfel-Button weitergeben
+      nextSpieler(idgesamt,nextID);
   
     // Feldtext Ausgabe
     var FieldText = getFeldText(fieldID);
@@ -123,10 +126,17 @@
     var positionFeld = document.getElementById('position'+id);
     var position = positionFeld.innerHTML;
     position = parseInt(position);
+    if(position == 101){
+        return position;
+    }
 
     //neue Position berechnen und setzen
     var nextPosition = position + zahl;
+    if(nextPosition >= 100){
+        nextPosition = 100;
+    }
     positionFeld.innerHTML = nextPosition;
+
 
     //neue FeldID
 

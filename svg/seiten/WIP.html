@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../assets/font_awesome/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dise Spiele sind geplant</title>
+    <link rel="stylesheet" href="../CSS/main.css">
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="topspalte">
+
+    <h1>Saufen leicht gemacht!</h1>
+
+    <h4>Von Säufern für Säufer</h4>
+
+</div>
+<div class="topnav" id="myTopnav">
+    <a href="../test.html" class="active">Home</a>
+    <a href="WIP.html">Aktuelle Spiele in Arbeit</a>
+    <div class="dropdown">
+        <button class="dropbtn">Die Spiele
+            <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="TicTacToe.html?MODE=MAIN">TicTacToe</a>
+            <a href="CoinToss.html?MODE=MAIN">Münze werfen</a>
+            <a href="ReactionTest.html?MODE=MAIN">Reaktionstest</a>
+            <a href="PferdeRennen.html?MODE=MAIN">Pferderennen</a>
+            <a href="../index.php">Sauf und ärger dich nicht</a>
+        </div>
+    </div>
+    <a href="../index.php">Sauf und ärger dich nicht!</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div style="font-size: 24px; display: inline-block; text-align: center;width: 100%;margin-top: 20px;">
+    <i class="fas fa-tools fa-10x"></i>
+<h1 style="color: red; text-align: center">Diese Seite befindet sich noch in Arbeit</h1>
+</div>
+</body>
+</html>
