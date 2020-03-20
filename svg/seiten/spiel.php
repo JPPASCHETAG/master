@@ -35,7 +35,7 @@ window.onload = function(){
 function getSpielFiguren(){
     var id = $('#spielerzahl').val();
     
-    $.post("externPHP/gallery.php", "" ,function(data){
+    $.post("../externPHP/gallery.php", "" ,function(data){
 
         var obj = JSON.parse(data);
         var length = Object.keys(obj).length
@@ -46,7 +46,7 @@ function getSpielFiguren(){
                 
                 var strReturn = "";
                 strReturn += '<div class="mySlides'+j+' Figuren">';
-                strReturn += '<img src='+obj[i]+'"../assets/figures/svg">';
+                strReturn += '<img src="../assets/figures/svg/'+obj[i]+'">';
                 strReturn += '</div>';
 
                 $('#figur'+j).children('#slideshow').prepend(strReturn); 
@@ -122,7 +122,7 @@ function getParam(){
       var spielerName = $("#spielerName"+i).val();
 
       var spielFigur = $(".mySlides"+i+":visible").html();
-      spielFigur = spielFigur.slice(29 , -2);      
+      spielFigur = spielFigur.slice(32 , -2);
 
       if(i!=0){
         strDaten+="&";
@@ -133,7 +133,7 @@ function getParam(){
 
     }
     
-    window.open("seiten/start.php"+strDaten,"_self");
+    window.open("start.php"+strDaten,"_self");
 
 }
 
@@ -161,7 +161,7 @@ function getParam(){
                 <div class="spielerzahl">
                     <label for="spielerzahl">Wie viele spielen?</label>
                     <input id="spielerzahl" placeholder="Bitte eine Zahl eingeben..." type="text" onkeyup="getSpielerZahl(this.value)" style ="display: <?php if(isset($_GET['ZAHL'])){echo "none"; } ?>">
-                    <label style="margin-left:25;" id="spielerzahlID"><?php echo @$_GET['ZAHL'] ?></label>
+                    <label style="margin-left:25px;" id="spielerzahlID"><?php echo @$_GET['ZAHL'] ?></label>
                 </div>
                 <div id="spielertable" class="table">
                   <!-- Wird durch JS befüllt -->
@@ -196,7 +196,7 @@ function getParam(){
             }
             }
 
-var slideIndex = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+var slideIndex = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 var slideId = ["mySlides0", "mySlides1", "mySlides2", "mySlides3", "mySlides4", "mySlides5", "mySlides6", "mySlides7", "mySlides8", "mySlides10", "mySlides11", "mySlides12", "mySlides13", "mySlides14", "mySlides15"]
 showSlides(1, 0);
 showSlides(1, 1);
