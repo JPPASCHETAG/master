@@ -95,7 +95,7 @@
           if(isMobile){
               $(".modal").css("padding-top", 0);
           }
-          Output('Setzt alle beliebig viele Schlucke auf Kopf oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
+          Output('Setzt alle beliebig viele Schlucke auf Titte oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
           break;
       case "Pferderennen":
           Output("Pferderennen.<br> Wenn Ihr bereit seit öffnet sich ein neuer Tab. <br> <br> <button onclick='openPferderennen()'>Hier klicken</button>");

@@ -177,30 +177,31 @@
                 }else if($("#vierter").text() === ""){
                     $("#vierter").text(id);
                 }
+                Output($("#spieldaten").val());
             }
 
             function moveKaro() {
                 var ende = $("#spielfeld").width() - 80;
                 var step = ende/6;
-                var speed = Math.floor(Math.random() * 2500) + 1000;
+                var speed = Math.floor(Math.random() * 1500) + 1000;
                 $("#Karo").animate({left: step}, speed ,"linear", function () {
                     console.log(speed);
-                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    speed = Math.floor(Math.random() * 1500) + 1000;
                     $(this).animate({left: step*2}, speed ,"linear", function () {
                         console.log(speed);
-                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        speed = Math.floor(Math.random() * 1500) + 1000;
                         $(this).animate({left: step*3}, speed ,"linear", function () {
                             console.log(speed);
-                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            speed = Math.floor(Math.random() * 1500) + 1000;
                             $(this).animate({left: step*4}, speed ,"linear", function () {
                                 console.log(speed);
-                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                speed = Math.floor(Math.random() * 1500) + 1000;
                                 $(this).animate({left: step*5}, speed ,"linear", function () {
                                     console.log(speed);
-                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    speed = Math.floor(Math.random() * 1500) + 1000;
                                     $(this).animate({left: step*6}, speed ,"linear", function () {
                                         console.log(speed);
-                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        speed = Math.floor(Math.random() * 1500) + 1000;
                                         console.log(this.id);
                                         platzierung(this.id);
                                     });
@@ -214,25 +215,25 @@
             function movePik() {
                 var ende = $("#spielfeld").width() - 80;
                 var step = ende/6;
-                var speed = Math.floor(Math.random() * 2500) + 1000;
+                var speed = Math.floor(Math.random() * 1500) + 1000;
                 $("#Pik").animate({left: step}, speed ,"linear", function () {
                     console.log(speed);
-                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    speed = Math.floor(Math.random() * 1500) + 1000;
                     $(this).animate({left: step*2}, speed ,"linear", function () {
                         console.log(speed);
-                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        speed = Math.floor(Math.random() * 1500) + 1000;
                         $(this).animate({left: step*3}, speed ,"linear", function () {
                             console.log(speed);
-                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            speed = Math.floor(Math.random() * 1500) + 1000;
                             $(this).animate({left: step*4}, speed ,"linear", function () {
                                 console.log(speed);
-                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                speed = Math.floor(Math.random() * 1500) + 1000;
                                 $(this).animate({left: step*5}, speed ,"linear", function () {
                                     console.log(speed);
-                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    speed = Math.floor(Math.random() * 1500) + 1000;
                                     $(this).animate({left: step*6}, speed ,"linear", function () {
                                         console.log(speed);
-                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        speed = Math.floor(Math.random() * 1500) + 1000;
                                         platzierung(this.id);
                                     });
                                 });
@@ -245,25 +246,25 @@
             function moveHerz() {
                 var ende = $("#spielfeld").width() - 80;
                 var step = ende/6;
-                var speed = Math.floor(Math.random() * 2500) + 1000;
+                var speed = Math.floor(Math.random() * 1500) + 1000;
                 $("#Kreuz").animate({left: step}, speed ,"linear", function () {
                     console.log(speed);
-                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    speed = Math.floor(Math.random() * 1500) + 1000;
                     $(this).animate({left: step*2}, speed ,"linear", function () {
                         console.log(speed);
-                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        speed = Math.floor(Math.random() * 1500) + 1000;
                         $(this).animate({left: step*3}, speed ,"linear", function () {
                             console.log(speed);
-                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            speed = Math.floor(Math.random() * 1500) + 1000;
                             $(this).animate({left: step*4}, speed ,"linear", function () {
                                 console.log(speed);
-                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                speed = Math.floor(Math.random() * 1500) + 1000;
                                 $(this).animate({left: step*5}, speed ,"linear", function () {
                                     console.log(speed);
-                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    speed = Math.floor(Math.random() * 1500) + 1000;
                                     $(this).animate({left: step*6}, speed ,"linear", function () {
                                         console.log(speed);
-                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        speed = Math.floor(Math.random() * 1500) + 1000;
                                         platzierung(this.id);
                                     });
                                 });
@@ -276,25 +277,25 @@
             function moveKreuz() {
                 var ende = $("#spielfeld").width() - 80;
                 var step = ende/6;
-                var speed = Math.floor(Math.random() * 2500) + 1000;
+                var speed = Math.floor(Math.random() * 1500) + 1000;
                 $("#Herz").animate({left: step}, speed ,"linear", function () {
                     console.log(speed);
-                    speed = Math.floor(Math.random() * 2500) + 1000;
+                    speed = Math.floor(Math.random() * 1500) + 1000;
                     $(this).animate({left: step*2}, speed ,"linear", function () {
                         console.log(speed);
-                        speed = Math.floor(Math.random() * 2500) + 1000;
+                        speed = Math.floor(Math.random() * 1500) + 1000;
                         $(this).animate({left: step*3}, speed ,"linear", function () {
                             console.log(speed);
-                            speed = Math.floor(Math.random() * 2500) + 1000;
+                            speed = Math.floor(Math.random() * 1500) + 1000;
                             $(this).animate({left: step*4}, speed ,"linear", function () {
                                 console.log(speed);
-                                speed = Math.floor(Math.random() * 2500) + 1000;
+                                speed = Math.floor(Math.random() * 1500) + 1000;
                                 $(this).animate({left: step*5}, speed ,"linear", function () {
                                     console.log(speed);
-                                    speed = Math.floor(Math.random() * 2500) + 1000;
+                                    speed = Math.floor(Math.random() * 1500) + 1000;
                                     $(this).animate({left: step*6}, speed ,"linear", function () {
                                         console.log(speed);
-                                        speed = Math.floor(Math.random() * 2500) + 1000;
+                                        speed = Math.floor(Math.random() * 1500) + 1000;
                                         platzierung(this.id);
                                     });
                                 });
