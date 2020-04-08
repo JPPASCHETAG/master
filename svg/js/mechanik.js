@@ -75,7 +75,11 @@
               Output(obj[zahl]);
               addModalContent("<br>"+spieler1+" oder "+spieler2+"?");
 
-            } else {
+            } else if(FieldText == "IHNN") {
+                var strReturn = "Trinken muss: " + obj[zahl];
+
+                Output(strReturn);
+            }else{
               Output(obj[zahl]);
             }  
     
@@ -91,7 +95,7 @@
           if(isMobile){
               $(".modal").css("padding-top", 0);
           }
-          Output('Setzt alle belibig viele Schlucke auf Kopf oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
+          Output('Setzt alle beliebig viele Schlucke auf Kopf oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
           break;
       case "Pferderennen":
           Output("Pferderennen.<br> Wenn Ihr bereit seit öffnet sich ein neuer Tab. <br> <br> <button onclick='openPferderennen()'>Hier klicken</button>");
@@ -245,7 +249,7 @@
         "Regel",
         "Du bist jetzt Nosemaster",
         "P",
-        "Hole alles auf was du auf den weitesten zurückliegst.",
+        "Hole alles an Shlucken auf was du auf den weitesten zurückliegst. Bist du am weitesten, kannst du dir jemanden aussuchen, der alles aufholen muss.",
         "TTT",//"Gehe auf Start",                                                         //FELD34
         "Wasserfall",
         "Reaktionstest",//"Gehe 2 Felde zurück",                                                    //FELD36
@@ -278,20 +282,20 @@
         "IHNN",
         "Pferderennen",
         "Du bist jetzt Nosemaster",
-        "Montagsmaler",
+        "Nine make a rhyme",
         "Würfel nochmal",
         "WWAE",
-        "Alle die Single sind trinken",
-        "Abstimmung, dann der nüchternste trinkt",
+        "Alle Singles müssen trinken",
+        "Stimmt ab, wer der nüchternste ist. Derjenige muss trinken.",
         "Wasserfall",
         "Der, der zuletzt auf dem Klo war muss trinken",
         "Stimme einen Schlager an. Wenn mehr als 2 mitsingen trinken alle.",
-        "Montagsmaler",
+        "Nine make a rhyme",
         "TTT",//"Gehe auf Feld 72",                                                         //FELD75
         "Stein/Schere/Papier um 10 Schluckk",
         "WWAE",
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
-        "Hol "+ $("#name"+1).text() +" ein neues Getränk. Er muss natürlich leeer sein, wenn du wieder da bist.",
+        "Hol "+ $("#name"+1).text() +" ein neues Getränk. Es muss natürlich leeer sein, wenn du wieder da bist.",
         "Reaktionstest",//"Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
@@ -307,7 +311,7 @@
         "Verteile 8 Schluck",
         "WWAE",
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
-        "Montagsmaler",
+        "Nine make a rhyme",
         "Ex und jemand anderes muss auch exen",
         "Wasserfall",
         "Ex und hop",
