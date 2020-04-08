@@ -108,11 +108,12 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
 
                   $StrTable .='<td id="name'.$i.'">'.$spielername.'</td>';
 
-                  $StrTable .='<td id=würfel'.$i.' style="width: 50px;">';
+                  $StrTable .='<td id=würfel'.$i.' style="width: 100px;">';
 
                   if($i == 0){
                     //$StrTable .= '<button onclick="javaskript:roll(this)">Würfeln</button>';
-                    $StrTable .= '<i class="fas fa-dice" onclick="javaskript:roll(this)"></i>';
+                    $StrTable .= '<i class="fas fa-dice" onclick="javaskript:roll(this)"
+></i>';
                   }
 
                   $StrTable .= '</td>';
@@ -123,7 +124,7 @@ var mySVG = document.getElementById('svg_obj').contentDocument;
 
                   $StrTable .='<td id="figur'.$i.'" style="display: none">'.$spielerFigur.'</td>';
 
-                  $StrTable .='<td style="width: 30px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
+                  $StrTable .='<td style="width: 50px;"><img src="../assets/figures/svg/'.$spielerFigur.'"> </td>';
 
                   $StrTable .="</tr>";
 
