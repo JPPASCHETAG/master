@@ -95,7 +95,7 @@
           if(isMobile){
               $(".modal").css("padding-top", 0);
           }
-          Output('Setzt alle beliebig viele Schlucke auf Kopf oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
+          Output('Setzt alle beliebig viele Schlucke auf Titte oder Zahl<br><iframe src="../seiten/CoinToss.html" frameborder="0" height="200px" ></iframe>');
           break;
       case "Pferderennen":
           Output("Pferderennen.<br> Wenn Ihr bereit seit öffnet sich ein neuer Tab. <br> <br> <button onclick='openPferderennen()'>Hier klicken</button>");
@@ -123,8 +123,7 @@
     var isMobile = findGetParameter("mobil");
 
     //Zahl generieren
-    var zahl = Math.floor(Math.random() * 6) + 1; 
-    //zahl = 51;
+    var zahl = Math.floor(Math.random() * 6) + 1;
 
     //position holen
     var positionFeld = document.getElementById('position'+id);
@@ -204,8 +203,6 @@
           spielerAufEins.style.top = Feld1Left+"px";
           spielerAufEins.style.left = Feld1Top+"px";
 
-          //funktioniert nicht
-          //addModalContent("Tut mir leid, dass du geschlagen wurdest.")
         }
       }
     }
@@ -249,13 +246,13 @@
         "Regel",
         "Du bist jetzt Nosemaster",
         "P",
-        "Hole alles an Shlucken auf was du auf den weitesten zurückliegst. Bist du am weitesten, kannst du dir jemanden aussuchen, der alles aufholen muss.",
+        "Trink dein aktuelles Getränk aus. Hast du dir gerade ein neues aufgemacht, musst du natürlich trotzdem trinken.",
         "TTT",//"Gehe auf Start",                                                         //FELD34
         "Wasserfall",
         "Reaktionstest",//"Gehe 2 Felde zurück",                                                    //FELD36
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
         "Kategorie",
-        "Abstimmung, dann der nüchternste trinkt",
+        "Der nüchternste muss trinken.",
         "IHNN",
         "Alle Dummen trinken",
         "Die kleinste trinkt",
@@ -295,7 +292,7 @@
         "Stein/Schere/Papier um 10 Schluckk",
         "WWAE",
         "Pantomime. Derjenige, der es errät darf doppelt soviele Schluck verteilen, wie Spieler mitspielen.",
-        "Hol "+ $("#name"+1).text() +" ein neues Getränk. Es muss natürlich leeer sein, wenn du wieder da bist.",
+        "Hol "+ $("#name"+1).text() +" ein neues Getränk. Das aktuelle muss natürlich leer sein, wenn du wieder da bist.",
         "Reaktionstest",//"Gehe auf Feld 69",                                                         //FELD80
         "Bestimme, wer 5 Schlucke trinken muss",
         "Kategorie",
